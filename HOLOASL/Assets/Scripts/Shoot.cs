@@ -50,6 +50,11 @@ public class Shoot : GazeInput
                 Application.Quit();
             }
 
+            else if (FocusedObject.tag == "GameLearn")
+            {
+                SceneManager.LoadScene(3);
+            }
+
         }
 
 
