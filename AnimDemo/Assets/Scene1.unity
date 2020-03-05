@@ -253,6 +253,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 113392bc8e8fd154385a7fc3926c8590, type: 2}
+    - target: {fileID: 100044, guid: b4ca7bd5f5471e2489e5130af18bdca9, type: 3}
+      propertyPath: m_Name
+      value: Bob_Avatar
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b4ca7bd5f5471e2489e5130af18bdca9, type: 3}
   m_IsPrefabParent: 0
@@ -325,11 +329,6 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 100044, guid: b4ca7bd5f5471e2489e5130af18bdca9, type: 3}
   m_PrefabInternal: {fileID: 1001948414}
---- !u!95 &1688061573 stripped
-Animator:
-  m_PrefabParentObject: {fileID: 9500000, guid: b4ca7bd5f5471e2489e5130af18bdca9,
-    type: 3}
-  m_PrefabInternal: {fileID: 1001948414}
 --- !u!114 &1688061575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,4 +340,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c46840bacc2be6948bb12e180e46e4da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Anim1: {fileID: 1688061573}
+  Avatar: {fileID: 0}
