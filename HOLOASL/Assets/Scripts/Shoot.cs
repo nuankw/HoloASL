@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class Shoot : GazeInput
 {
 
-    GestureRecognizer recognizer;
+    public GestureRecognizer recognizer;
     //public float ForceMagnitude = 300f;
 
     // Use this for initialization
@@ -32,14 +32,14 @@ public class Shoot : GazeInput
         // Initialize Raycasting.
         if (FocusedObject != null)
         {
-            
-            if(FocusedObject.tag == "Learn")
+
+            if (FocusedObject.tag == "Learn")
             {
-                SceneManager.LoadScene(2);
+                SceneManager.LoadScene(1);
 
             }
 
-            else if(FocusedObject.tag == "Converse")
+            else if (FocusedObject.tag == "Converse")
             {
                 SceneManager.LoadScene(1);
 
@@ -52,7 +52,8 @@ public class Shoot : GazeInput
 
             else if (FocusedObject.tag == "GameLearn")
             {
-                SceneManager.LoadScene(3);
+                // SceneManager.
+                SceneManager.LoadScene(1);
             }
 
         }

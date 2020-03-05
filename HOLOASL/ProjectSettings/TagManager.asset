@@ -12,6 +12,12 @@ TagManager:
   - Back
   - Gaze
   - TextBotTag
+  - Next
+  - Pass
+  - Fail
+  - Replay
+  - glObject
+  - GameLearn
   layers:
   - Default
   - TransparentFX

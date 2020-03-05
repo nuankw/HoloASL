@@ -1,0 +1,43 @@
+﻿using UnityEngine.SceneManagement;
+using UnityEngine.XR.WSA.Input;
+
+
+public class GameLearnInteractions : GazeInput
+{
+    private GestureRecognizer _gestureRecognizer;
+
+    internal override void Start()
+    {
+        base.Start();
+
+        //Register the application to recognize HoloLens user inputs
+        _gestureRecognizer = new GestureRecognizer();
+        _gestureRecognizer.SetRecognizableGestures(GestureSettings.Tap);
+        _gestureRecognizer.Tapped += GestureRecognizer_Tapped;
+        _gestureRecognizer.StartCapturingGestures();
+    }
+
+
+    private void GestureRecognizer_Tapped(TappedEventArgs obj)
+    {
+        if (FocusedObject.tag == "Back") {
+            SceneManager.LoadScene(0);
+            //TODO(@kourt: test on headset)
+        }
+        else if (FocusedObject.tag == "Replay") {
+            GameLearnController.Instance.PlayAnimation();
+            //TODO(@kourt: test on headset)
+        }
+        else if (FocusedObject.tag == "Pass") {
+            GameLearnController.Instance.UpdateScore(1);
+            GameLearnController.Instance.LoadNext();
+            //TODO(@kourt: test on headset)
+        }
+        else if (FocusedObject.tag == "Fail") {
+            GameLearnController.Instance.UpdateScore(0);
+            GameLearnController.Instance.LoadNext();
+            //TODO(@kourt: test on headset)
+        }
+    }
+}
+

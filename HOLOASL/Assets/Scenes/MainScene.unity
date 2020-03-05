@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 273619315}
   m_Layer: 0
   m_Name: Game Learn
-  m_TagString: Learn
+  m_TagString: GameLearn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
