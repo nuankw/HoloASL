@@ -35,13 +35,13 @@ public class Shoot : GazeInput
 
             if (FocusedObject.tag == "Learn")
             {
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(3);
 
             }
 
             else if (FocusedObject.tag == "Converse")
             {
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(2);
 
             }
 

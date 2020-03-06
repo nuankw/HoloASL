@@ -112,12 +112,17 @@ public class GameLearnController : MonoBehaviour {
 
     private void UpdateScoreUI()
     {
-        m_Score.text = score + " / " + attempted;
+        m_Score.text = "Score: " + score + " / " + attempted;
+        m_Score.transform.position = new Vector3(1f, 0.5f, -0.5f);
+        m_Score.transform.eulerAngles = new Vector3(0, 25, 0);
+
     }
 
     private void UpdateObjectLabelUI()
     {
         m_CurrentObjectName.text = animations_list[currentAnimation];
+        m_CurrentObjectName.transform.position = new Vector3(1f, 1f, -0.5f);
+        m_CurrentObjectName.transform.eulerAngles = new Vector3(0, 25, 0);
     }
 
     private void UpdateObjectUI()
@@ -132,7 +137,7 @@ public class GameLearnController : MonoBehaviour {
             }
         }
         GameObject newObject = Instantiate(Resources.Load(animations_list[currentAnimation])) as GameObject;
-        newObject.transform.position = new Vector3(-2, -1, 0);
+        newObject.transform.position = new Vector3(1.75f, -1.5f, -1f);
         float scale = objects_scale[currentAnimation];
         newObject.transform.localScale = new Vector3(scale, scale, scale);
         newObject.name = animations_list[currentAnimation];
