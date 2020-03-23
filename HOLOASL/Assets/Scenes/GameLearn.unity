@@ -372,6 +372,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 3045419d4e05b5f4dbe077c8254d0977, type: 2}
+    - target: {fileID: 100044, guid: cf35af15c2af3f24c8a4d74830b32145, type: 3}
+      propertyPath: m_TagString
+      value: Replay
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cf35af15c2af3f24c8a4d74830b32145, type: 3}
   m_IsPrefabParent: 0
@@ -923,8 +927,8 @@ Camera:
   m_GameObject: {fileID: 1052318997}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0

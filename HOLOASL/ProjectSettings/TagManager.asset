@@ -18,6 +18,7 @@ TagManager:
   - Replay
   - glObject
   - GameLearn
+  - actualObject
   layers:
   - Default
   - TransparentFX

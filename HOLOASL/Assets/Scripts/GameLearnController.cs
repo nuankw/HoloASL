@@ -12,8 +12,8 @@ public class GameLearnController : MonoBehaviour {
 
     internal Animator m_Animator;
     private int currentAnimation = -1;
-    String[] animations_list = new String[] {"Apple","Baseball","Cat","Dog","Elephant","Fire"};
-    float[] objects_scale = new float[] {      0.1f,   0.005f,  0.02f, 0.02f, 0.04f, 0.5f };
+    String[] animations_list = new String[] {"Apple","Baseball","Cat",  "Dog", "Elephant","Fire"};
+    float[] objects_scale = new float[] {     0.1f,   0.005f,    0.02f, 0.02f,  0.04f,     0.5f };
     private int score = -1;
     private int attempted = -1;
     private int starting = 1;
@@ -68,6 +68,10 @@ public class GameLearnController : MonoBehaviour {
             UpdateScore(0);
             LoadNext();
         }
+        GameObject currentObject = GameObject.FindGameObjectWithTag("actualObject");
+        currentObject.transform.Rotate(0, 50 * Time.deltaTime, 0);
+        GameObject animator = GameObject.FindGameObjectWithTag("Replay");
+        // listen to animator on click 
     }
 
     public void BeginGame()
@@ -128,7 +132,6 @@ public class GameLearnController : MonoBehaviour {
     private void UpdateObjectUI()
     {
         if (starting == 0) {
-            Debug.Log((currentAnimation - 1) % animations_list.Length);
             GameObject oldObject = GameObject.Find(animations_list[(currentAnimation - 1 + animations_list.Length) % animations_list.Length]);
             if (oldObject != null)
             {
@@ -141,7 +144,7 @@ public class GameLearnController : MonoBehaviour {
         float scale = objects_scale[currentAnimation];
         newObject.transform.localScale = new Vector3(scale, scale, scale);
         newObject.name = animations_list[currentAnimation];
-        newObject.tag = "Replay";
+        newObject.tag = "actualObject";
         // newObject.transform.parent = parentObj.transform;
     }
 
