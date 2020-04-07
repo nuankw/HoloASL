@@ -17,7 +17,8 @@ public class GameLearnController : MonoBehaviour {
     private int score = -1;
     private int attempted = -1;
     private int starting = 1;
-
+    private float animator_speed = 0.8f;
+    private bool animator_is_playing = false;
     public static GameLearnController Instance;
 
     private void Awake()
@@ -68,10 +69,17 @@ public class GameLearnController : MonoBehaviour {
             UpdateScore(0);
             LoadNext();
         }
+        if (Input.GetKeyDown("d"))
+        {
+            SlowDownAnimation();
+        }
+        if (Input.GetKeyDown("u"))
+        {
+            SpeedUpAnimation();
+        }
         GameObject currentObject = GameObject.FindGameObjectWithTag("actualObject");
         currentObject.transform.Rotate(0, 50 * Time.deltaTime, 0);
-        GameObject animator = GameObject.FindGameObjectWithTag("Replay");
-        // listen to animator on click 
+        PlayAnimation(animator_speed);
     }
 
     public void BeginGame()
@@ -102,10 +110,29 @@ public class GameLearnController : MonoBehaviour {
         UpdateScoreUI();
     }
 
-    public void PlayAnimation()
+    public void PlayAnimation(float speed = 0.75f)
     {
         Debug.Log(animations_list[currentAnimation] + " played.");
+        m_Animator.speed = speed;
         m_Animator.Play(animations_list[currentAnimation]);
+    }
+
+    public void SlowDownAnimation()
+    {
+        animator_speed = 0.8f * animator_speed;
+        if (animator_speed < 0.2f) {
+            animator_speed = 0.2f; 
+        }
+        PlayAnimation(animator_speed);
+    }
+
+    public void SpeedUpAnimation()
+    {
+        animator_speed = 1.2f * animator_speed;
+        if (animator_speed > 2.0f) {
+            animator_speed = 2.0f; 
+        }
+        PlayAnimation(animator_speed);
     }
 
     public void Done(string name)
@@ -124,9 +151,13 @@ public class GameLearnController : MonoBehaviour {
 
     private void UpdateObjectLabelUI()
     {
-        m_CurrentObjectName.text = animations_list[currentAnimation];
+        char[] anim_chars = animations_list[currentAnimation].ToCharArray();
+        m_CurrentObjectName.text = String.Join(" ", anim_chars);
         m_CurrentObjectName.transform.position = new Vector3(1f, 1f, -0.5f);
         m_CurrentObjectName.transform.eulerAngles = new Vector3(0, 25, 0);
+        m_CurrentObjectName.fontSize = 500;
+        m_CurrentObjectName.fontStyle = FontStyle.Bold;
+        m_CurrentObjectName.transform.localScale = new Vector3(0.008f, 0.008f, 0.008f);
     }
 
     private void UpdateObjectUI()
