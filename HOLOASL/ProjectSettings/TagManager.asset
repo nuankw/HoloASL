@@ -19,8 +19,10 @@ TagManager:
   - glObject
   - GameLearn
   - actualObject
-  - Slower
   - Faster
+  - Slower
+  - HalfSpeed
+  - FullSpeed
   layers:
   - Default
   - TransparentFX

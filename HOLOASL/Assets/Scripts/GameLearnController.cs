@@ -17,7 +17,7 @@ public class GameLearnController : MonoBehaviour {
     private int score = -1;
     private int attempted = -1;
     private int starting = 1;
-    private float animator_speed = 0.8f;
+    private float animator_speed = 1.0f;
     private bool animator_is_playing = false;
     public static GameLearnController Instance;
 
@@ -77,9 +77,17 @@ public class GameLearnController : MonoBehaviour {
         {
             SpeedUpAnimation();
         }
+        if (Input.GetKeyDown("1"))
+        {
+            FullSpeed();
+        }
+        if (Input.GetKeyDown("2"))
+        {
+            HalfSpeed();
+        }
         GameObject currentObject = GameObject.FindGameObjectWithTag("actualObject");
         currentObject.transform.Rotate(0, 50 * Time.deltaTime, 0);
-        PlayAnimation(animator_speed);
+        PlayAnimation();
     }
 
     public void BeginGame()
@@ -110,29 +118,40 @@ public class GameLearnController : MonoBehaviour {
         UpdateScoreUI();
     }
 
-    public void PlayAnimation(float speed = 0.75f)
+    public void PlayAnimation()
     {
-        Debug.Log(animations_list[currentAnimation] + " played.");
-        m_Animator.speed = speed;
+        m_Animator.speed = animator_speed;
         m_Animator.Play(animations_list[currentAnimation]);
     }
 
     public void SlowDownAnimation()
     {
         animator_speed = 0.8f * animator_speed;
-        if (animator_speed < 0.2f) {
-            animator_speed = 0.2f; 
+        if (animator_speed < 0.1f) {
+            animator_speed = 0.1f; 
         }
-        PlayAnimation(animator_speed);
+        PlayAnimation();
+    }
+
+    public void HalfSpeed()
+    {
+        animator_speed = 0.5f;
+    }
+
+    public void FullSpeed()
+    {
+
+        animator_speed = 1.0f;
     }
 
     public void SpeedUpAnimation()
     {
         animator_speed = 1.2f * animator_speed;
-        if (animator_speed > 2.0f) {
-            animator_speed = 2.0f; 
+        if (animator_speed > 2.0f)
+        {
+            animator_speed = 2.0f;
         }
-        PlayAnimation(animator_speed);
+        PlayAnimation();
     }
 
     public void Done(string name)

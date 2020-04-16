@@ -46,6 +46,16 @@ public class GameLearnInteractions : GazeInput
             GameLearnController.Instance.SlowDownAnimation();
             //TODO(@nuan: test on headset)
         }
+        else if (FocusedObject.tag == "FullSpeed")
+        {
+            GameLearnController.Instance.FullSpeed();
+            //TODO(@nuan: test on headset)
+        }
+        else if (FocusedObject.tag == "HalfSpeed")
+        {
+            GameLearnController.Instance.HalfSpeed();
+            //TODO(@nuan: test on headset)
+        }
     }
 }
 
