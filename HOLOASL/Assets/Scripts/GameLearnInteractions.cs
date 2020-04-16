@@ -38,6 +38,14 @@ public class GameLearnInteractions : GazeInput
             GameLearnController.Instance.LoadNext();
             //TODO(@kourt: test on headset)
         }
+        else if (FocusedObject.tag == "Faster") {
+            GameLearnController.Instance.SpeedUpAnimation();
+            //TODO(@nuan: test on headset)
+        }
+        else if (FocusedObject.tag == "Slower") {
+            GameLearnController.Instance.SlowDownAnimation();
+            //TODO(@nuan: test on headset)
+        }
     }
 }
 

@@ -13,6 +13,14 @@ public class AnimateScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (Input.GetKeyDown("1"))
+        {
+            HalfSpeed();
+        }
+        if (Input.GetKeyDown("0"))
+        {
+            FullSpeed();
+        }
         if (Input.GetKeyDown("space"))
         {
             Debug.Log("Anim_A started.");
@@ -26,4 +34,14 @@ public class AnimateScript : MonoBehaviour {
             Debug.Log("Anim_Hi stopped.");
         }
 	}
+
+    void HalfSpeed()
+    {
+        Avatar.speed = 0.5f;
+    }
+
+    void FullSpeed()
+    {
+        Avatar.speed = 1.0f;
+    }
 }
