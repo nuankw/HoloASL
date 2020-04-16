@@ -13,7 +13,7 @@ public class GameLearnController : MonoBehaviour {
     internal Animator m_Animator;
     private int currentAnimation = -1;
     String[] animations_list = new String[] {"Apple","Baseball","Cat",  "Dog", "Elephant","Fire"};
-    float[] objects_scale = new float[] {     0.1f,   0.005f,    0.02f, 0.02f,  0.04f,     0.5f };
+    float[] objects_scale = new float[] {     0.1f,   0.008f,    0.035f, 0.03f,  0.048f,    1.0f };
     private int score = -1;
     private int attempted = -1;
     private int starting = 1;
@@ -164,7 +164,7 @@ public class GameLearnController : MonoBehaviour {
     {
         m_Score.text = "Score: " + score + " / " + attempted;
         m_Score.transform.position = new Vector3(1f, 0.5f, -0.5f);
-        m_Score.transform.eulerAngles = new Vector3(0, 25, 0);
+        m_Score.transform.eulerAngles = new Vector3(0, 10, 0);
 
     }
 
@@ -173,7 +173,7 @@ public class GameLearnController : MonoBehaviour {
         char[] anim_chars = animations_list[currentAnimation].ToCharArray();
         m_CurrentObjectName.text = String.Join(" ", anim_chars);
         m_CurrentObjectName.transform.position = new Vector3(1f, 1f, -0.5f);
-        m_CurrentObjectName.transform.eulerAngles = new Vector3(0, 25, 0);
+        m_CurrentObjectName.transform.eulerAngles = new Vector3(0, 10, 0);
         m_CurrentObjectName.fontSize = 500;
         m_CurrentObjectName.fontStyle = FontStyle.Bold;
         m_CurrentObjectName.transform.localScale = new Vector3(0.008f, 0.008f, 0.008f);
@@ -190,7 +190,7 @@ public class GameLearnController : MonoBehaviour {
             }
         }
         GameObject newObject = Instantiate(Resources.Load(animations_list[currentAnimation])) as GameObject;
-        newObject.transform.position = new Vector3(1.75f, -1.5f, -1f);
+        newObject.transform.position = new Vector3(2.0f, -2.0f, -1f);
         float scale = objects_scale[currentAnimation];
         newObject.transform.localScale = new Vector3(scale, scale, scale);
         newObject.name = animations_list[currentAnimation];

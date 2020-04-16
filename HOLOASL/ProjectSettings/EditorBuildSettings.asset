@@ -11,15 +11,18 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainScene.unity
     guid: a3062b81e63ab11498ef0473be1d433a
   - enabled: 1
     path: Assets/Scenes/GameLearn.unity
     guid: d9599b1f1e1dbf14785e90adb4646475
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Converse.unity
     guid: 9f56f5020d12b1a4b91eea9f305d8dce
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Learning.unity
     guid: cdfb69fcbc65cad44b6770540ff28889
+  - enabled: 0
+    path: Assets/Scenes/Cards.unity
+    guid: 6a4c38dc0af849b46b007395b7461e7a

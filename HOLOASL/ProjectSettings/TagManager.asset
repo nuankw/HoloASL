@@ -23,6 +23,7 @@ TagManager:
   - Slower
   - HalfSpeed
   - FullSpeed
+  - Label
   layers:
   - Default
   - TransparentFX
