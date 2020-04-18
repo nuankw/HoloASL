@@ -11,7 +11,7 @@ public class GameLearnController : MonoBehaviour {
     private GameObject parentObj;
 
     internal Animator m_Animator;
-    private int currentAnimation = -1;
+    public static int currentAnimation = -1;
     String[] animations_list = new String[] {"Apple","Baseball","Cat",  "Dog", "Elephant","Fire"};
     float[] objects_scale = new float[] {     0.1f,   0.008f,    0.035f, 0.03f,  0.048f,    1.0f };
     private int score = -1;

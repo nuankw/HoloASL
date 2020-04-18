@@ -35,14 +35,12 @@ public class Shoot : GazeInput
 
             if (FocusedObject.tag == "Learn")
             {
-                SceneManager.LoadScene(3);
-
+                SceneManager.LoadScene("Learning");
             }
 
             else if (FocusedObject.tag == "Converse")
             {
-                SceneManager.LoadScene(2);
-
+                SceneManager.LoadScene("Converse");
             }
 
             else if (FocusedObject.tag == "Quit")
@@ -52,13 +50,9 @@ public class Shoot : GazeInput
 
             else if (FocusedObject.tag == "GameLearn")
             {
-                // SceneManager.
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene("Cards");
             }
-
         }
-
-
     }
 
     // Update is called once per frame

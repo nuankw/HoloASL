@@ -24,6 +24,12 @@ TagManager:
   - HalfSpeed
   - FullSpeed
   - Label
+  - sel_apple
+  - sel_baseball
+  - sel_cat
+  - set_dog
+  - sel_elephant
+  - sel_fire
   layers:
   - Default
   - TransparentFX
