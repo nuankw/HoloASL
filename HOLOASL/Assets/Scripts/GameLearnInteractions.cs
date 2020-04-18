@@ -21,7 +21,7 @@ public class GameLearnInteractions : GazeInput
     private void GestureRecognizer_Tapped(TappedEventArgs obj)
     {
         if (FocusedObject.tag == "Back") {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("Cards");
             //TODO(@kourt: test on headset)
         }
         else if (FocusedObject.tag == "Replay") {

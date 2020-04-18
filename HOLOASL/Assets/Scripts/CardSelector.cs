@@ -68,6 +68,11 @@ public class CardSelector : GazeInput
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.currentAnimation = 4;
             }
+
+            else if (FocusedObject.tag == "Back")
+            {
+                SceneManager.LoadScene("MainScene");
+            }
         }
     }
 
@@ -78,9 +83,10 @@ public class CardSelector : GazeInput
 
         if (Input.GetKeyDown("space")) // DEBUGGING ONLY
         {
-            SceneManager.LoadScene("GameLearn");
-            GameLearnController.currentAnimation = -1; // offset by -1
-            Debug.Log("Scene Changed");
+            SceneManager.LoadScene("MainScene");
+            // SceneManager.LoadScene("GameLearn");
+            // GameLearnController.currentAnimation = -1; // offset by -1
+            // Debug.Log("Scene Changed");
         }
     }
     
