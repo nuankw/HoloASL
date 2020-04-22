@@ -20,6 +20,7 @@ public class GameLearnController : MonoBehaviour {
     private float animator_speed = 1.0f;
     private bool animator_is_playing = false;
     public static GameLearnController Instance;
+    private AudioSource audio_ding;
 
     private void Awake()
     {
@@ -40,6 +41,8 @@ public class GameLearnController : MonoBehaviour {
 
         // Get prent object for loading gamelean objects
         parentObj = GameObject.FindGameObjectWithTag("glObject");
+
+        audio_ding = GetComponent<AudioSource>();
 
         BeginGame();
     }
@@ -62,6 +65,7 @@ public class GameLearnController : MonoBehaviour {
         if (Input.GetKeyDown("p"))
         {
             UpdateScore(1);
+            audio_ding.Play();
             LoadNext();
         }
         if (Input.GetKeyDown("f"))
