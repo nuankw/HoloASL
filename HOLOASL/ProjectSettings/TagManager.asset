@@ -30,6 +30,7 @@ TagManager:
   - set_dog
   - sel_elephant
   - sel_fire
+  - QuarterSpeed
   layers:
   - Default
   - TransparentFX

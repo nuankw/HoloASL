@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Threading.Tasks;
 
 public class GameLearnController : MonoBehaviour {
     public GameObject glObject;
@@ -89,9 +90,13 @@ public class GameLearnController : MonoBehaviour {
         {
             HalfSpeed();
         }
+        if (Input.GetKeyDown("4"))
+        {
+            QuarterSpeed();
+        }
         GameObject currentObject = GameObject.FindGameObjectWithTag("actualObject");
         currentObject.transform.Rotate(0, 50 * Time.deltaTime, 0);
-        PlayAnimation();
+        // PlayAnimation(); # no auto play
     }
 
     public void BeginGame()
@@ -122,9 +127,10 @@ public class GameLearnController : MonoBehaviour {
         UpdateScoreUI();
     }
 
-    public void PlayAnimation()
+    public async void PlayAnimation()
     {
         m_Animator.speed = animator_speed;
+        await Task.Delay(1000);
         m_Animator.Play(animations_list[currentAnimation]);
     }
 
@@ -140,12 +146,19 @@ public class GameLearnController : MonoBehaviour {
     public void HalfSpeed()
     {
         animator_speed = 0.5f;
+        PlayAnimation();
     }
 
     public void FullSpeed()
     {
-
         animator_speed = 1.0f;
+        PlayAnimation();
+    }
+
+    public void QuarterSpeed()
+    {
+        animator_speed = 0.25f;
+        PlayAnimation();
     }
 
     public void SpeedUpAnimation()
@@ -162,7 +175,6 @@ public class GameLearnController : MonoBehaviour {
     {
         return;
     }
-
 
     private void UpdateScoreUI()
     {

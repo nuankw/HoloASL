@@ -56,6 +56,11 @@ public class GameLearnInteractions : GazeInput
             GameLearnController.Instance.HalfSpeed();
             //TODO(@nuan: test on headset)
         }
+        else if (FocusedObject.tag == "QuarterSpeed")
+        {
+            GameLearnController.Instance.QuarterSpeed();
+            //TODO(@nuan: test on headset)
+        }
     }
 }
 
