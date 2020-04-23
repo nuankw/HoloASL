@@ -1,4 +1,5 @@
-﻿using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR.WSA.Input;
 
 
@@ -20,47 +21,44 @@ public class GameLearnInteractions : GazeInput
 
     private void GestureRecognizer_Tapped(TappedEventArgs obj)
     {
+        Debug.Log(FocusedObject.tag);
         if (FocusedObject.tag == "Back") {
+            base.DestroyCursor(0);
             SceneManager.LoadScene("Cards");
-            //TODO(@kourt: test on headset)
         }
         else if (FocusedObject.tag == "Replay") {
             GameLearnController.Instance.PlayAnimation();
-            //TODO(@kourt: test on headset)
         }
         else if (FocusedObject.tag == "Pass") {
             GameLearnController.Instance.UpdateScore(1);
-            GameLearnController.Instance.LoadNext();
-            //TODO(@kourt: test on headset)
+            base.DestroyCursor(0);
+            SceneManager.LoadScene("Cards");
         }
         else if (FocusedObject.tag == "Fail") {
             GameLearnController.Instance.UpdateScore(0);
-            GameLearnController.Instance.LoadNext();
-            //TODO(@kourt: test on headset)
-        }
-        else if (FocusedObject.tag == "Faster") {
-            GameLearnController.Instance.SpeedUpAnimation();
-            //TODO(@nuan: test on headset)
-        }
-        else if (FocusedObject.tag == "Slower") {
-            GameLearnController.Instance.SlowDownAnimation();
-            //TODO(@nuan: test on headset)
+            GameLearnController.Instance.PlayAnimation();
         }
         else if (FocusedObject.tag == "FullSpeed")
         {
             GameLearnController.Instance.FullSpeed();
-            //TODO(@nuan: test on headset)
+            GameLearnController.Instance.PlayAnimation();
         }
         else if (FocusedObject.tag == "HalfSpeed")
         {
             GameLearnController.Instance.HalfSpeed();
-            //TODO(@nuan: test on headset)
+            GameLearnController.Instance.PlayAnimation();
         }
         else if (FocusedObject.tag == "QuarterSpeed")
         {
             GameLearnController.Instance.QuarterSpeed();
-            //TODO(@nuan: test on headset)
+            GameLearnController.Instance.PlayAnimation();
         }
+    }
+
+    // Update is called once per frame
+    internal override void Update()
+    {
+        base.Update();
     }
 }
 

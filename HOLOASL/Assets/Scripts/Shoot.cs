@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class Shoot : GazeInput
 {
 
-    public GestureRecognizer recognizer;
+    private GestureRecognizer recognizer;
     //public float ForceMagnitude = 300f;
 
     // Use this for initialization
@@ -50,6 +50,7 @@ public class Shoot : GazeInput
 
             else if (FocusedObject.tag == "GameLearn")
             {
+                base.DestroyCursor(0);
                 SceneManager.LoadScene("Cards");
             }
         }

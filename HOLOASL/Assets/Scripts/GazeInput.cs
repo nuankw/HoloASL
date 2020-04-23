@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.String;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -61,21 +62,30 @@ public class GazeInput : MonoBehaviour
         index++;
         // Remove the collider, so it does not block Raycast.
         Destroy(newCursor.GetComponent<SphereCollider>());
-        if (GameObject.FindGameObjectsWithTag("Gaze").Length > 1)
-            {
-            Debug.Log(GameObject.FindGameObjectsWithTag("Gaze").Length);
-            newCursor.transform.localScale = new Vector3(5f, 5f, 5f);
-        }
-        else
-        {
-            newCursor.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-        }
+        /* new
+        // if (GameObject.FindGameObjectsWithTag("Gaze").Length > 1)
+        //     {
+        //     Debug.Log(GameObject.FindGameObjectsWithTag("Gaze").Length);
+        //     newCursor.transform.localScale = new Vector3(5f, 5f, 5f);
+        // }
+        // else
+        // {
+        //     newCursor.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        // }
+        */
+        newCursor.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f); // new
         Material mat = new Material(Shader.Find("Diffuse"));
         newCursor.GetComponent<MeshRenderer>().material = mat;
         mat.color = Color.HSVToRGB(0.0223f, 0.7922f, 1.000f);
         newCursor.SetActive(true);
 
         return newCursor;
+    }
+
+    internal void DestroyCursor(int cursorIndex) {
+        Debug.Log("destroying!!!!!!");
+        GameObject cursor_to_destroy = GameObject.FindGameObjectWithTag("Gaze" + cursorIndex.ToString());
+        Destroy(cursor_to_destroy);
     }
 
     /// <summary>

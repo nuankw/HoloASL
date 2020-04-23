@@ -19,7 +19,6 @@ public class GameLearnController : MonoBehaviour {
     private int attempted = -1;
     private int starting = 1;
     private float animator_speed = 1.0f;
-    private bool animator_is_playing = false;
     public static GameLearnController Instance;
     private AudioSource audio_ding;
 
@@ -51,49 +50,22 @@ public class GameLearnController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("n"))
-        {
-            LoadNext();
-        }
-        if (Input.GetKeyDown("space"))
-        {
-            PlayAnimation();
-        }
-        if (Input.GetKeyDown("r"))
-        {
-            ResetScore();
-        }
-        if (Input.GetKeyDown("p"))
-        {
+        if (Input.GetKeyDown("n")){ LoadNext(); }
+        if (Input.GetKeyDown("space")){ PlayAnimation(); }
+        if (Input.GetKeyDown("r")){ ResetScore(); }
+        if (Input.GetKeyDown("p")){
             UpdateScore(1);
             audio_ding.Play();
             LoadNext();
         }
-        if (Input.GetKeyDown("f"))
-        {
+        if (Input.GetKeyDown("f")){
             UpdateScore(0);
             LoadNext();
         }
-        if (Input.GetKeyDown("d"))
-        {
-            SlowDownAnimation();
-        }
-        if (Input.GetKeyDown("u"))
-        {
-            SpeedUpAnimation();
-        }
-        if (Input.GetKeyDown("1"))
-        {
-            FullSpeed();
-        }
-        if (Input.GetKeyDown("2"))
-        {
-            HalfSpeed();
-        }
-        if (Input.GetKeyDown("4"))
-        {
-            QuarterSpeed();
-        }
+        if (Input.GetKeyDown("1")){ FullSpeed(); }
+        if (Input.GetKeyDown("2")){ HalfSpeed(); }
+        if (Input.GetKeyDown("4")){ QuarterSpeed(); }
+        
         GameObject currentObject = GameObject.FindGameObjectWithTag("actualObject");
         currentObject.transform.Rotate(0, 50 * Time.deltaTime, 0);
         // PlayAnimation(); # no auto play
@@ -134,42 +106,21 @@ public class GameLearnController : MonoBehaviour {
         m_Animator.Play(animations_list[currentAnimation]);
     }
 
-    public void SlowDownAnimation()
-    {
-        animator_speed = 0.8f * animator_speed;
-        if (animator_speed < 0.1f) {
-            animator_speed = 0.1f; 
-        }
-        PlayAnimation();
-    }
-
     public void HalfSpeed()
     {
         animator_speed = 0.5f;
-        PlayAnimation();
     }
 
     public void FullSpeed()
     {
         animator_speed = 1.0f;
-        PlayAnimation();
     }
 
     public void QuarterSpeed()
     {
         animator_speed = 0.25f;
-        PlayAnimation();
     }
 
-    public void SpeedUpAnimation()
-    {
-        animator_speed = 1.2f * animator_speed;
-        if (animator_speed > 2.0f)
-        {
-            animator_speed = 2.0f;
-        }
-        PlayAnimation();
-    }
 
     public void Done(string name)
     {
@@ -180,7 +131,7 @@ public class GameLearnController : MonoBehaviour {
     {
         m_Score.text = "Score: " + score + " / " + attempted;
         m_Score.transform.position = new Vector3(1f, 0.5f, -0.5f);
-        m_Score.transform.eulerAngles = new Vector3(0, 10, 0);
+        m_Score.transform.eulerAngles = new Vector3(0, 0, 0);
 
     }
 
@@ -188,8 +139,9 @@ public class GameLearnController : MonoBehaviour {
     {
         char[] anim_chars = animations_list[currentAnimation].ToCharArray();
         m_CurrentObjectName.text = String.Join(" ", anim_chars);
+        m_CurrentObjectName.text.color = new Color(230, 230, 230, 255);
         m_CurrentObjectName.transform.position = new Vector3(1f, 1f, -0.5f);
-        m_CurrentObjectName.transform.eulerAngles = new Vector3(0, 10, 0);
+        m_CurrentObjectName.transform.eulerAngles = new Vector3(0, 0, 0);
         m_CurrentObjectName.fontSize = 500;
         m_CurrentObjectName.fontStyle = FontStyle.Bold;
         m_CurrentObjectName.transform.localScale = new Vector3(0.008f, 0.008f, 0.008f);

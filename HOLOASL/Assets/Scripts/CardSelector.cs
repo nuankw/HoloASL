@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class CardSelector : GazeInput
 {
 
-    public GestureRecognizer recognizer;
+    private GestureRecognizer recognizer;
     //public float ForceMagnitude = 300f;
 
     // Use this for initialization
@@ -35,42 +35,49 @@ public class CardSelector : GazeInput
 
             if (FocusedObject.tag == "sel_apple")
             {
+                base.DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.currentAnimation = -1;
             }
 
             else if (FocusedObject.tag == "sel_baseball")
             {
+                base.DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.currentAnimation = 0;
             }
 
             else if (FocusedObject.tag == "sel_cat")
             {
+                base.DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.currentAnimation = 1;
             }
 
             else if (FocusedObject.tag == "sel_dog")
             {
+                base.DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.currentAnimation = 2;
             }
 
             else if (FocusedObject.tag == "sel_elephant")
             {
+                base.DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.currentAnimation = 3;
             }
 
             else if (FocusedObject.tag == "sel_fire")
             {
+                base.DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.currentAnimation = 4;
             }
 
             else if (FocusedObject.tag == "Back")
             {
+                base.DestroyCursor(0);
                 SceneManager.LoadScene("MainScene");
             }
         }
