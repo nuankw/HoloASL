@@ -139,7 +139,7 @@ public class GameLearnController : MonoBehaviour {
     {
         char[] anim_chars = animations_list[currentAnimation].ToCharArray();
         m_CurrentObjectName.text = String.Join(" ", anim_chars);
-        m_CurrentObjectName.text.color = new Color(230, 230, 230, 255);
+        m_CurrentObjectName.color = new Color(230f / 255f, 230f / 255f, 230f / 255f);
         m_CurrentObjectName.transform.position = new Vector3(1f, 1f, -0.5f);
         m_CurrentObjectName.transform.eulerAngles = new Vector3(0, 0, 0);
         m_CurrentObjectName.fontSize = 500;
