@@ -32,6 +32,8 @@ TagManager:
   - sel_fire
   - QuarterSpeed
   - Victory
+  - hide_cartoons
+  - show_cartoons
   layers:
   - Default
   - TransparentFX
