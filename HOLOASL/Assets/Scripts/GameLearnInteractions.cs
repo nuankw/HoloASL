@@ -6,7 +6,6 @@ using UnityEngine.XR.WSA.Input;
 public class GameLearnInteractions : GazeInput
 {
     private GestureRecognizer _gestureRecognizer;
-
     internal override void Start()
     {
         base.Start();
@@ -18,40 +17,26 @@ public class GameLearnInteractions : GazeInput
         _gestureRecognizer.StartCapturingGestures();
     }
 
-
     private void GestureRecognizer_Tapped(TappedEventArgs obj)
     {
         Debug.Log(FocusedObject.tag);
         if (FocusedObject.tag == "Back") {
-            base.DestroyCursor(0);
+            DestroyCursor(0);
             SceneManager.LoadScene("Cards");
-        }
-        else if (FocusedObject.tag == "Replay") {
-            GameLearnController.Instance.PlayAnimation();
         }
         else if (FocusedObject.tag == "Pass") {
-            GameLearnController.Instance.UpdateScore(1);
-            base.DestroyCursor(0);
-            SceneManager.LoadScene("Cards");
+            GameLearnController.Instance.Unlock_Current_Vocab();
+            DestroyCursor(0);
+            // @Jix: add some special sound effect here!
         }
-        else if (FocusedObject.tag == "Fail") {
-            GameLearnController.Instance.UpdateScore(0);
-            GameLearnController.Instance.PlayAnimation();
+        else if (FocusedObject.tag == "FullSpeed") {
+            GameLearnController.Instance.Play_at_Full_Speed();
         }
-        else if (FocusedObject.tag == "FullSpeed")
-        {
-            GameLearnController.Instance.FullSpeed();
-            GameLearnController.Instance.PlayAnimation();
+        else if (FocusedObject.tag == "HalfSpeed") {
+            GameLearnController.Instance.Play_at_Half_Speed();
         }
-        else if (FocusedObject.tag == "HalfSpeed")
-        {
-            GameLearnController.Instance.HalfSpeed();
-            GameLearnController.Instance.PlayAnimation();
-        }
-        else if (FocusedObject.tag == "QuarterSpeed")
-        {
-            GameLearnController.Instance.QuarterSpeed();
-            GameLearnController.Instance.PlayAnimation();
+        else if (FocusedObject.tag == "QuarterSpeed") {
+            GameLearnController.Instance.Play_at_Quarter_Speed();
         }
     }
 

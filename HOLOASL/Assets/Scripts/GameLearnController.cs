@@ -5,31 +5,38 @@ using System;
 using System.Threading.Tasks;
 
 public class GameLearnController : MonoBehaviour {
-    public GameObject glObject;
-    public TextMesh m_Score;
-    public TextMesh m_CurrentObjectName;
-
-    private GameObject parentObj;
-
-    internal Animator m_Animator;
-    public static int currentAnimation = -1;
-    String[] animations_list = new String[] {"Apple","Baseball","Cat",  "Dog", "Elephant","Fire"};
-    float[] objects_scale = new float[] {     0.1f,   0.008f,    0.035f, 0.03f,  0.048f,    1.0f };
-    private int score = -1;
-    private int attempted = -1;
-    private int starting = 1;
-    private float animator_speed = 1.0f;
+    public TextMesh unlock_num_text_obj;
+    public TextMesh curr_label_obj;
+    internal Animator curr_animator_obj;
+    public static int curr_vocab_idx;
+    public static int n_unlocked; // number of unlocked objects
+    private float animator_speed = 1.0f;// Future: can change all following Array to ArrayList for easier future dynamic addition (back-end ish)
+    String[] animations_list = new String[] {
+        "Apple",
+        "Baseball",
+        "Cat",
+        "Dog",
+        "Elephant",
+        "Fire"
+    };
+    float[] objects_scale = new float[] {
+        0.1f,
+        0.008f,
+        0.035f,
+        0.03f,
+        0.048f,
+        1.0f 
+    };
+    public bool[] object_unlocked = new bool[] {false, false, false, false, false, false};
     public static GameLearnController Instance;
     private AudioSource audio_ding;
 
-    private void Awake()
-    {
+    private void Awake() {
         Instance = this;
     }
 
     // Use this for initialization
-    void Start()
-    {
+    void Start() {
         // Add the GazeInput class to this object
         gameObject.AddComponent<GazeInput>();
 
@@ -37,138 +44,111 @@ public class GameLearnController : MonoBehaviour {
         gameObject.AddComponent<GameLearnInteractions>();
 
         // Add the Animator object to this object
-        m_Animator = GetComponent<Animator>();
-
-        // Get prent object for loading gamelean objects
-        parentObj = GameObject.FindGameObjectWithTag("glObject");
+        curr_animator_obj = GetComponent<Animator>();
 
         audio_ding = GetComponent<AudioSource>();
 
-        BeginGame();
+        LoadAll();
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown("n")){ LoadNext(); }
-        if (Input.GetKeyDown("space")){ PlayAnimation(); }
-        if (Input.GetKeyDown("r")){ ResetScore(); }
-        if (Input.GetKeyDown("p")){
-            UpdateScore(1);
+    void Update() {
+        if (Input.GetKeyDown("space")){ LoadAll(); }
+        if (Input.GetKeyDown("1")){ Play_at_Full_Speed(); }
+        if (Input.GetKeyDown("2")){ Play_at_Half_Speed(); }
+        if (Input.GetKeyDown("4")){ Play_at_Quarter_Speed(); }
+        if (Input.GetKeyDown("t")){
+            Unlock_Current_Vocab();
             audio_ding.Play();
-            LoadNext();
+            curr_vocab_idx += 1;
+            LoadAll();
         }
-        if (Input.GetKeyDown("f")){
-            UpdateScore(0);
-            LoadNext();
-        }
-        if (Input.GetKeyDown("1")){ FullSpeed(); }
-        if (Input.GetKeyDown("2")){ HalfSpeed(); }
-        if (Input.GetKeyDown("4")){ QuarterSpeed(); }
-        
         GameObject currentObject = GameObject.FindGameObjectWithTag("actualObject");
         currentObject.transform.Rotate(0, 50 * Time.deltaTime, 0);
-        // PlayAnimation(); # no auto play
     }
 
-    public void BeginGame()
-    {
-        UpdateScore(0 + starting);
-        starting = 0;
-        LoadNext();
+    // ===============================================================
+    public void LoadAll() {
+        curr_vocab_idx = Math.Abs(curr_vocab_idx % animations_list.Length); // just to play safe
+        Load_Object();
+        Play_Animation(800);
     }
 
-    public void LoadNext()
-    {
-        currentAnimation = (currentAnimation+1) % animations_list.Length; // TODO(@kourt: should we be looping?)
-        UpdateObject();
-        PlayAnimation();
+    public void Load_Object() {
+        Load_Display_Obj_Name();
+        Update_Score_UI();
+        Load_Low_Poly_Object();
     }
 
-    public void UpdateScore(int point)
-    {
-        score += point;
-        attempted += 1;
-        UpdateScoreUI();
+    public async void Play_Animation(int wait_miliseconds=1000) {
+        curr_animator_obj.speed = animator_speed;
+        await Task.Delay(wait_miliseconds);
+        curr_animator_obj.Play(animations_list[curr_vocab_idx]);
     }
 
-    public void ResetScore()
-    {
-        score = 0;
-        attempted = 0;
-        UpdateScoreUI();
+    private void Load_Display_Obj_Name() {
+        char[] anim_chars = animations_list[curr_vocab_idx].ToCharArray();
+        curr_label_obj.text = String.Join(" ", anim_chars);
+        curr_label_obj.color = new Color(230f / 255f, 230f / 255f, 230f / 255f);
+        curr_label_obj.transform.position = new Vector3(-2.0f, 1f, -0.5f);
+        curr_label_obj.transform.eulerAngles = new Vector3(0, 0, 0);
+        curr_label_obj.fontSize = 500;
+        curr_label_obj.fontStyle = FontStyle.Bold;
+        curr_label_obj.transform.localScale = new Vector3(0.008f, 0.008f, 0.008f);
     }
 
-    public async void PlayAnimation()
-    {
-        m_Animator.speed = animator_speed;
-        await Task.Delay(1000);
-        m_Animator.Play(animations_list[currentAnimation]);
+    private void Update_Score_UI() {
+        unlock_num_text_obj.text = "Unlocked: " + n_unlocked + " / " + animations_list.Length;
+        unlock_num_text_obj.color = new Color(230f / 255f, 230f / 255f, 230f / 255f);
+        unlock_num_text_obj.transform.position = new Vector3(-2.0f, 0.5f, -0.5f);
+        unlock_num_text_obj.transform.eulerAngles = new Vector3(0, 0, 0);
     }
 
-    public void HalfSpeed()
-    {
-        animator_speed = 0.5f;
+    private void Load_Low_Poly_Object() {
+        if (GameObject.FindGameObjectWithTag("actualObject")) {
+            GameObject old_obj = GameObject.FindGameObjectWithTag("actualObject");
+            Destroy(old_obj);
+        }
+        GameObject newObject = Instantiate(Resources.Load(animations_list[curr_vocab_idx])) as GameObject;
+        newObject.transform.position = new Vector3(-1.5f, -1.7f, -1f);
+        float scale = objects_scale[curr_vocab_idx];
+        newObject.transform.localScale = new Vector3(scale, scale, scale);
+        newObject.name = animations_list[curr_vocab_idx];
+        newObject.tag = "actualObject";
     }
 
-    public void FullSpeed()
-    {
+    public int Unlock_Current_Vocab() {
+        Debug.Log(curr_vocab_idx);
+        Debug.Log(object_unlocked[curr_vocab_idx]);
+
+        if (object_unlocked[curr_vocab_idx] == false) {
+            Debug.Log("updating n_unlocked");
+            n_unlocked += 1;
+            object_unlocked[curr_vocab_idx] = true;
+            Debug.Log(object_unlocked[curr_vocab_idx]);
+            Update_Score_UI();
+        }
+        
+        return n_unlocked;
+    }
+
+    public void Play_at_Full_Speed() {
         animator_speed = 1.0f;
+        Play_Animation(1000);
     }
 
-    public void QuarterSpeed()
-    {
+    public void Play_at_Half_Speed() {
+        animator_speed = 0.5f;
+        Play_Animation(800);
+    }
+
+    public void Play_at_Quarter_Speed() {
         animator_speed = 0.25f;
+        Play_Animation(400);
     }
-
 
     public void Done(string name)
     {
         return;
-    }
-
-    private void UpdateScoreUI()
-    {
-        m_Score.text = "Score: " + score + " / " + attempted;
-        m_Score.transform.position = new Vector3(1f, 0.5f, -0.5f);
-        m_Score.transform.eulerAngles = new Vector3(0, 0, 0);
-
-    }
-
-    private void UpdateObjectLabelUI()
-    {
-        char[] anim_chars = animations_list[currentAnimation].ToCharArray();
-        m_CurrentObjectName.text = String.Join(" ", anim_chars);
-        m_CurrentObjectName.color = new Color(230f / 255f, 230f / 255f, 230f / 255f);
-        m_CurrentObjectName.transform.position = new Vector3(1f, 1f, -0.5f);
-        m_CurrentObjectName.transform.eulerAngles = new Vector3(0, 0, 0);
-        m_CurrentObjectName.fontSize = 500;
-        m_CurrentObjectName.fontStyle = FontStyle.Bold;
-        m_CurrentObjectName.transform.localScale = new Vector3(0.008f, 0.008f, 0.008f);
-    }
-
-    private void UpdateObjectUI()
-    {
-        if (starting == 0) {
-            GameObject oldObject = GameObject.Find(animations_list[(currentAnimation - 1 + animations_list.Length) % animations_list.Length]);
-            if (oldObject != null)
-            {
-                oldObject.SetActive(false);
-                Destroy(oldObject);
-            }
-        }
-        GameObject newObject = Instantiate(Resources.Load(animations_list[currentAnimation])) as GameObject;
-        newObject.transform.position = new Vector3(2.0f, -2.0f, -1f);
-        float scale = objects_scale[currentAnimation];
-        newObject.transform.localScale = new Vector3(scale, scale, scale);
-        newObject.name = animations_list[currentAnimation];
-        newObject.tag = "actualObject";
-        // newObject.transform.parent = parentObj.transform;
-    }
-
-    public void UpdateObject()
-    {
-        UpdateObjectLabelUI();
-        UpdateObjectUI();
     }
 }

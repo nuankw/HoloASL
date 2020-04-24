@@ -84,8 +84,10 @@ public class GazeInput : MonoBehaviour
 
     internal void DestroyCursor(int cursorIndex) {
         Debug.Log("destroying!!!!!!");
-        GameObject cursor_to_destroy = GameObject.FindGameObjectWithTag("Gaze" + cursorIndex.ToString());
-        Destroy(cursor_to_destroy);
+        if (GameObject.Find("Gaze" + cursorIndex.ToString()) != null) {
+            GameObject cursor_to_destroy = GameObject.Find("Gaze" + cursorIndex.ToString());
+            Destroy(cursor_to_destroy);
+        }
     }
 
     /// <summary>

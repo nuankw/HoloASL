@@ -6,6 +6,7 @@ public class CardSelector : GazeInput
 
     private GestureRecognizer recognizer;
     //public float ForceMagnitude = 300f;
+    private int number_unlocked;
 
     // Use this for initialization
     internal override void Start()
@@ -35,49 +36,49 @@ public class CardSelector : GazeInput
 
             if (FocusedObject.tag == "sel_apple")
             {
-                base.DestroyCursor(0);
+                DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
-                GameLearnController.currentAnimation = -1;
+                GameLearnController.curr_vocab_idx = 0;
             }
 
             else if (FocusedObject.tag == "sel_baseball")
             {
-                base.DestroyCursor(0);
+                DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
-                GameLearnController.currentAnimation = 0;
+                GameLearnController.curr_vocab_idx = 1;
             }
 
             else if (FocusedObject.tag == "sel_cat")
             {
-                base.DestroyCursor(0);
+                DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
-                GameLearnController.currentAnimation = 1;
+                GameLearnController.curr_vocab_idx = 2;
             }
 
             else if (FocusedObject.tag == "sel_dog")
             {
-                base.DestroyCursor(0);
+                DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
-                GameLearnController.currentAnimation = 2;
+                GameLearnController.curr_vocab_idx = 3;
             }
 
             else if (FocusedObject.tag == "sel_elephant")
             {
-                base.DestroyCursor(0);
+                DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
-                GameLearnController.currentAnimation = 3;
+                GameLearnController.curr_vocab_idx = 4;
             }
 
             else if (FocusedObject.tag == "sel_fire")
             {
-                base.DestroyCursor(0);
+                DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
-                GameLearnController.currentAnimation = 4;
+                GameLearnController.curr_vocab_idx = 5;
             }
 
             else if (FocusedObject.tag == "Back")
             {
-                base.DestroyCursor(0);
+                DestroyCursor(0);
                 SceneManager.LoadScene("MainScene");
             }
         }
