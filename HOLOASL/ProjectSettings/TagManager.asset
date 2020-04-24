@@ -31,6 +31,8 @@ TagManager:
   - sel_elephant
   - sel_fire
   - QuarterSpeed
+  - hide_cartoons
+  - show_cartoons
   layers:
   - Default
   - TransparentFX

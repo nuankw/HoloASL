@@ -7,6 +7,7 @@ public class CardSelector : GazeInput
     private GestureRecognizer recognizer;
     //public float ForceMagnitude = 300f;
     private int number_unlocked;
+    private AudioSource audio_apple, audio_baseball, audio_cat, audio_dog, audio_elephant, audio_fire;
 
     // Use this for initialization
     internal override void Start()
@@ -21,6 +22,13 @@ public class CardSelector : GazeInput
         recognizer.Tapped += ShootBall;
         
         recognizer.StartCapturingGestures();
+
+        audio_apple = GameObject.Find("audio_apple").GetComponent<AudioSource>();
+        audio_baseball = GameObject.Find("audio_baseball").GetComponent<AudioSource>();
+        audio_cat = GameObject.Find("audio_cat").GetComponent<AudioSource>();
+        audio_dog = GameObject.Find("audio_dog").GetComponent<AudioSource>();
+        audio_elephant = GameObject.Find("audio_elephant").GetComponent<AudioSource>();
+        audio_fire = GameObject.Find("audio_fire").GetComponent<AudioSource>();
     }
     
 
@@ -36,6 +44,7 @@ public class CardSelector : GazeInput
 
             if (FocusedObject.tag == "sel_apple")
             {
+                audio_apple.Play();
                 DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 0;
@@ -43,6 +52,7 @@ public class CardSelector : GazeInput
 
             else if (FocusedObject.tag == "sel_baseball")
             {
+                audio_baseball.Play();
                 DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 1;
@@ -50,6 +60,7 @@ public class CardSelector : GazeInput
 
             else if (FocusedObject.tag == "sel_cat")
             {
+                audio_cat.Play();
                 DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 2;
@@ -57,6 +68,7 @@ public class CardSelector : GazeInput
 
             else if (FocusedObject.tag == "sel_dog")
             {
+                audio_dog.Play();
                 DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 3;
@@ -64,6 +76,7 @@ public class CardSelector : GazeInput
 
             else if (FocusedObject.tag == "sel_elephant")
             {
+                audio_elephant.Play();
                 DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 4;
@@ -71,6 +84,7 @@ public class CardSelector : GazeInput
 
             else if (FocusedObject.tag == "sel_fire")
             {
+                audio_fire.Play();
                 DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 5;
@@ -80,6 +94,26 @@ public class CardSelector : GazeInput
             {
                 DestroyCursor(0);
                 SceneManager.LoadScene("MainScene");
+            }
+
+            else if (FocusedObject.tag == "hide_cartoons")
+            {
+                GameObject.Find("Apple").GetComponentInChildren<MeshRenderer>().enabled = false;
+                GameObject.Find("Baseball").GetComponentInChildren<MeshRenderer>().enabled = false;
+                GameObject.Find("Cat").GetComponentInChildren<MeshRenderer>().enabled = false;
+                GameObject.Find("Dog").GetComponentInChildren<MeshRenderer>().enabled = false;
+                GameObject.Find("Elephant").GetComponentInChildren<MeshRenderer>().enabled = false;
+                GameObject.Find("Fire").GetComponentInChildren<MeshRenderer>().enabled = false;
+            }
+
+            else if (FocusedObject.tag == "show_cartoons")
+            {
+                GameObject.Find("Apple").GetComponentInChildren<MeshRenderer>().enabled = true;
+                GameObject.Find("Baseball").GetComponentInChildren<MeshRenderer>().enabled = true;
+                GameObject.Find("Cat").GetComponentInChildren<MeshRenderer>().enabled = true;
+                GameObject.Find("Dog").GetComponentInChildren<MeshRenderer>().enabled = true;
+                GameObject.Find("Elephant").GetComponentInChildren<MeshRenderer>().enabled = true;
+                GameObject.Find("Fire").GetComponentInChildren<MeshRenderer>().enabled = true;
             }
         }
     }
@@ -91,10 +125,10 @@ public class CardSelector : GazeInput
 
         if (Input.GetKeyDown("space")) // DEBUGGING ONLY
         {
-            SceneManager.LoadScene("MainScene");
-            // SceneManager.LoadScene("GameLearn");
-            // GameLearnController.currentAnimation = -1; // offset by -1
-            // Debug.Log("Scene Changed");
+            audio_apple.Play();
+            DestroyCursor(0);
+            SceneManager.LoadScene("GameLearn");
+            GameLearnController.curr_vocab_idx = 0;
         }
     }
     
