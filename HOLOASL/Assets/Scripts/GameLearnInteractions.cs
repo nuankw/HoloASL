@@ -34,8 +34,6 @@ public class GameLearnInteractions : GazeInput
         else if (FocusedObject.tag == "Pass") {
             audio_ding.Play();
             GameLearnController.Instance.Unlock_Current_Vocab();
-            DestroyCursor(0);
-            // @Jix: add some special sound effect here!
         }
         else if (FocusedObject.tag == "FullSpeed") {
             audio_ding.Play();
