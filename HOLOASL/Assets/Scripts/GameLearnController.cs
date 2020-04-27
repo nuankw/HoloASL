@@ -22,14 +22,21 @@ public class GameLearnController : MonoBehaviour {
     float[] objects_scale = new float[] {
         0.1f,
         0.008f,
-        0.035f,
         0.03f,
-        0.048f,
-        1.0f 
+        0.027f,
+        0.045f,
+        0.9f 
+    };
+    Vector3[] objects_pos = new Vector3[] {
+        new Vector3(-1.3f, -2.1f, -1f),
+        new Vector3(-1.3f, -2.1f, -1f),
+        new Vector3(-1.6f, -1.5f, -1f),
+        new Vector3(-1.5f, -1.7f, -1f),
+        new Vector3(-1.3f, -1.9f, -1f),
+        new Vector3(-1.4f, -1.9f, -1f)
     };
     public bool[] object_unlocked = new bool[] {false, false, false, false, false, false};
     public static GameLearnController Instance;
-    private AudioSource audio_ding;
 
     private void Awake() {
         Instance = this;
@@ -46,8 +53,10 @@ public class GameLearnController : MonoBehaviour {
         // Add the Animator object to this object
         curr_animator_obj = GetComponent<Animator>();
 
-        audio_ding = GetComponent<AudioSource>();
+        // remove cursor duplicates
 
+
+        // load objects
         LoadAll();
     }
 
@@ -59,12 +68,15 @@ public class GameLearnController : MonoBehaviour {
         if (Input.GetKeyDown("4")){ Play_at_Quarter_Speed(); }
         if (Input.GetKeyDown("t")){
             Unlock_Current_Vocab();
-            audio_ding.Play();
             curr_vocab_idx += 1;
             LoadAll();
         }
         GameObject currentObject = GameObject.FindGameObjectWithTag("actualObject");
-        currentObject.transform.Rotate(0, 50 * Time.deltaTime, 0);
+        if (animations_list[curr_vocab_idx] == "Elephant") { 
+            GameObject.Find("default").transform.Rotate(0, 50 * Time.deltaTime, 0);
+        } else {
+            currentObject.transform.Rotate(0, 50 * Time.deltaTime, 0);
+        }
     }
 
     // ===============================================================
@@ -98,7 +110,7 @@ public class GameLearnController : MonoBehaviour {
     }
 
     private void Update_Score_UI() {
-        unlock_num_text_obj.text = "Unlocked: " + n_unlocked + " / " + animations_list.Length;
+        unlock_num_text_obj.text = "U n l o c k e d: " + n_unlocked + " / " + animations_list.Length;
         unlock_num_text_obj.color = new Color(230f / 255f, 230f / 255f, 230f / 255f);
         unlock_num_text_obj.transform.position = new Vector3(-2.0f, 0.5f, -0.5f);
         unlock_num_text_obj.transform.eulerAngles = new Vector3(0, 0, 0);
@@ -110,7 +122,7 @@ public class GameLearnController : MonoBehaviour {
             Destroy(old_obj);
         }
         GameObject newObject = Instantiate(Resources.Load(animations_list[curr_vocab_idx])) as GameObject;
-        newObject.transform.position = new Vector3(-1.5f, -1.7f, -1f);
+        newObject.transform.position = objects_pos[curr_vocab_idx];
         float scale = objects_scale[curr_vocab_idx];
         newObject.transform.localScale = new Vector3(scale, scale, scale);
         newObject.name = animations_list[curr_vocab_idx];
@@ -149,6 +161,15 @@ public class GameLearnController : MonoBehaviour {
 
     public void Done(string name)
     {
-        return;
+        // GameObject[] allGobj = GameObject.FindObjectsOfType<GameObject>();
+        // List<String> nameList = new List<String>();
+        // for (int i = 0; i < allGobj.Length; i++) {
+        //     GameObject gameObj = allGobj[i];
+        //     if (nameList.Contains(gameObj.name) && gameObj.name == "Gaze0"){
+        //         Destroy(gameObj);
+        //     } else {
+        //         nameList.Add(gameObj.name);
+        //     }
+        // }
     }
 }
