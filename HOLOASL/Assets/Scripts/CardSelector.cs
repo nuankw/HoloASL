@@ -40,6 +40,23 @@ public class CardSelector : GazeInput
         audio_fire = GameObject.Find("audio_fire").GetComponent<AudioSource>();
     }
 
+    private void hideAllCards() {
+        GameObject.Find("Apple").transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
+        GameObject.Find("Baseball").transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
+        GameObject.Find("Cat").transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
+        GameObject.Find("Dog").transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
+        GameObject.Find("Elephant").transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
+        GameObject.Find("Fire").transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
+        GameObject.Find("Apple").transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
+        GameObject.Find("Baseball").transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
+        GameObject.Find("Cat").transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
+        GameObject.Find("Dog").transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
+        GameObject.Find("Elephant").transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
+        GameObject.Find("Fire").transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
+        GameObject.Find("Back").GetComponent<MeshRenderer>().enabled = false;
+        GameObject.Find("Back").transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
+        GameObject.Find("Tap instruction").GetComponent<MeshRenderer>().enabled = false;
+    }
     private async void ShootBall(TappedEventArgs obj)
     {
 
@@ -53,8 +70,9 @@ public class CardSelector : GazeInput
             if (FocusedObject.tag == "sel_apple")
             {
                 audio_apple.Play();
+                hideAllCards();
                 GameObject.Find("Apple").GetComponentInChildren<MeshRenderer>().enabled = true;
-                await Task.Delay(3000);
+                await Task.Delay(1000);
                 DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 0;
@@ -63,8 +81,9 @@ public class CardSelector : GazeInput
             else if (FocusedObject.tag == "sel_baseball")
             {
                 audio_baseball.Play();
+                hideAllCards();
                 GameObject.Find("Baseball").GetComponentInChildren<MeshRenderer>().enabled = true;
-                await Task.Delay(3000);
+                await Task.Delay(1000);
                 DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 1;
@@ -73,8 +92,9 @@ public class CardSelector : GazeInput
             else if (FocusedObject.tag == "sel_cat")
             {
                 audio_cat.Play();
+                hideAllCards();
                 GameObject.Find("Cat").GetComponentInChildren<MeshRenderer>().enabled = true;
-                await Task.Delay(3000);
+                await Task.Delay(1000);
                 DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 2;
@@ -83,8 +103,9 @@ public class CardSelector : GazeInput
             else if (FocusedObject.tag == "sel_dog")
             {
                 audio_dog.Play();
+                hideAllCards();
                 GameObject.Find("Dog").GetComponentInChildren<MeshRenderer>().enabled = true;
-                await Task.Delay(3000);
+                await Task.Delay(1000);
                 DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 3;
@@ -93,8 +114,9 @@ public class CardSelector : GazeInput
             else if (FocusedObject.tag == "sel_elephant")
             {
                 audio_elephant.Play();
+                hideAllCards();
                 GameObject.Find("Elephant").GetComponentInChildren<MeshRenderer>().enabled = true;
-                await Task.Delay(3000);
+                await Task.Delay(1000);
                 DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 4;
@@ -103,8 +125,9 @@ public class CardSelector : GazeInput
             else if (FocusedObject.tag == "sel_fire")
             {
                 audio_fire.Play();
+                hideAllCards();
                 GameObject.Find("Fire").GetComponentInChildren<MeshRenderer>().enabled = true;
-                await Task.Delay(3000);
+                await Task.Delay(1000);
                 DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 5;
@@ -125,10 +148,17 @@ public class CardSelector : GazeInput
 
         if (Input.GetKeyDown("space")) // DEBUGGING ONLY
         {
-            audio_apple.Play();
-            DestroyCursor(0);
-            SceneManager.LoadScene("GameLearn");
-            GameLearnController.curr_vocab_idx = 0;
+            // audio_apple.Play();
+            // DestroyCursor(0);
+            // SceneManager.LoadScene("GameLearn");
+            // GameLearnController.curr_vocab_idx = 0;
+            audio_fire.Play();
+            hideAllCards();
+            GameObject.Find("Fire").GetComponentInChildren<MeshRenderer>().enabled = true;
+        }
+        if (Input.GetKeyDown("r")) // DEBUGGING ONLY
+        {
+            SceneManager.LoadScene("Cards");
         }
     }
     

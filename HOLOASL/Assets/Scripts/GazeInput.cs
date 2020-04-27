@@ -73,10 +73,11 @@ public class GazeInput : MonoBehaviour
         //     newCursor.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
         // }
         */
-        newCursor.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f); // new
+        newCursor.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f); // new
         Material mat = new Material(Shader.Find("Diffuse"));
         newCursor.GetComponent<MeshRenderer>().material = mat;
-        mat.color = Color.HSVToRGB(0.0223f, 0.7922f, 1.000f);
+        newCursor.GetComponent<MeshRenderer>().receiveShadows = false;
+        mat.color = Color.HSVToRGB(0.01f, 0.01f, 0.95f);
         newCursor.SetActive(true);
 
         return newCursor;

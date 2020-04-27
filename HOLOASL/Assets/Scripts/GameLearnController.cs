@@ -29,7 +29,6 @@ public class GameLearnController : MonoBehaviour {
     };
     public bool[] object_unlocked = new bool[] {false, false, false, false, false, false};
     public static GameLearnController Instance;
-    private AudioSource audio_ding;
 
     private void Awake() {
         Instance = this;
@@ -46,8 +45,6 @@ public class GameLearnController : MonoBehaviour {
         // Add the Animator object to this object
         curr_animator_obj = GetComponent<Animator>();
 
-        audio_ding = GetComponent<AudioSource>();
-
         LoadAll();
     }
 
@@ -59,7 +56,6 @@ public class GameLearnController : MonoBehaviour {
         if (Input.GetKeyDown("4")){ Play_at_Quarter_Speed(); }
         if (Input.GetKeyDown("t")){
             Unlock_Current_Vocab();
-            audio_ding.Play();
             curr_vocab_idx += 1;
             LoadAll();
         }
@@ -98,7 +94,7 @@ public class GameLearnController : MonoBehaviour {
     }
 
     private void Update_Score_UI() {
-        unlock_num_text_obj.text = "Unlocked: " + n_unlocked + " / " + animations_list.Length;
+        unlock_num_text_obj.text = "U n l o c k e d: " + n_unlocked + " / " + animations_list.Length;
         unlock_num_text_obj.color = new Color(230f / 255f, 230f / 255f, 230f / 255f);
         unlock_num_text_obj.transform.position = new Vector3(-2.0f, 0.5f, -0.5f);
         unlock_num_text_obj.transform.eulerAngles = new Vector3(0, 0, 0);
