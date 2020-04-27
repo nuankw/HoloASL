@@ -46,8 +46,15 @@ public class GazeInput : MonoBehaviour
     internal virtual void Start()
     {
         FocusedObject = null;
-        Cursor = CreateCursor();
+        Cursor = FindCursor(index);
+        if (Cursor == null) {
+            Cursor = CreateCursor();
+        }
+    }
 
+    internal GameObject FindCursor(int index)
+    {
+        return GameObject.Find("Gaze" + index);
     }
 
     /// <summary>
@@ -84,9 +91,11 @@ public class GazeInput : MonoBehaviour
     }
 
     internal void DestroyCursor(int cursorIndex) {
+
         Debug.Log("destroying!!!!!!");
         if (GameObject.Find("Gaze" + cursorIndex.ToString()) != null) {
             GameObject cursor_to_destroy = GameObject.Find("Gaze" + cursorIndex.ToString());
+            cursor_to_destroy.SetActive(false);
             Destroy(cursor_to_destroy);
         }
     }

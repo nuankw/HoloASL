@@ -67,9 +67,7 @@ public class CardSelector : GazeInput
     private async void ShootBall(TappedEventArgs obj)
     {
 
-        //Debug.Log("obj"+ obj);
-        //Debug.Log("Renderer"+ GetComponent<Renderer>()+"Object"+ GetComponent<Renderer>());
-        //Debug.Log("Focussed object is:" + FocusedObject.tag);
+        Debug.Log("Focussed object is:" + FocusedObject.tag);
         // Initialize Raycasting.
         if (FocusedObject != null)
         {

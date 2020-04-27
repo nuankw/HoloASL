@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.WSA.Input;
-
-
+using System.Collections.Generic;
+using System;
 public class GameLearnInteractions : GazeInput
 {
     private GestureRecognizer _gestureRecognizer;
@@ -19,6 +19,8 @@ public class GameLearnInteractions : GazeInput
         _gestureRecognizer.StartCapturingGestures();
 
         audio_ding = GetComponent<AudioSource>();
+
+
     }
 
     private void GestureRecognizer_Tapped(TappedEventArgs obj)

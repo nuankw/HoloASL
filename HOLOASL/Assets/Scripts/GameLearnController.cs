@@ -53,6 +53,10 @@ public class GameLearnController : MonoBehaviour {
         // Add the Animator object to this object
         curr_animator_obj = GetComponent<Animator>();
 
+        // remove cursor duplicates
+
+
+        // load objects
         LoadAll();
     }
 
@@ -157,6 +161,15 @@ public class GameLearnController : MonoBehaviour {
 
     public void Done(string name)
     {
-        return;
+        // GameObject[] allGobj = GameObject.FindObjectsOfType<GameObject>();
+        // List<String> nameList = new List<String>();
+        // for (int i = 0; i < allGobj.Length; i++) {
+        //     GameObject gameObj = allGobj[i];
+        //     if (nameList.Contains(gameObj.name) && gameObj.name == "Gaze0"){
+        //         Destroy(gameObj);
+        //     } else {
+        //         nameList.Add(gameObj.name);
+        //     }
+        // }
     }
 }
