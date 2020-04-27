@@ -33,6 +33,7 @@ TagManager:
   - QuarterSpeed
   - hide_cartoons
   - show_cartoons
+  - sel_dog
   layers:
   - Default
   - TransparentFX
