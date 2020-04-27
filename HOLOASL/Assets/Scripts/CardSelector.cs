@@ -10,7 +10,7 @@ public class CardSelector : GazeInput
     //public float ForceMagnitude = 300f;
     private int number_unlocked;
     private AudioSource audio_apple, audio_baseball, audio_cat, audio_dog, audio_elephant, audio_fire;
-
+    private GameObject apple, baseball, cat, dog, elephant, fire;
     // Use this for initialization
     internal override void Start()
     {
@@ -24,13 +24,20 @@ public class CardSelector : GazeInput
         recognizer.Tapped += ShootBall;
         
         recognizer.StartCapturingGestures();
+        
+        apple = GameObject.Find("Apple");
+        baseball = GameObject.Find("Baseball");
+        cat = GameObject.Find("Cat");
+        dog = GameObject.Find("Dog");
+        elephant = GameObject.Find("Elephant");
+        fire = GameObject.Find("Fire");
 
-        GameObject.Find("Apple").GetComponentInChildren<MeshRenderer>().enabled = false;
-        GameObject.Find("Baseball").GetComponentInChildren<MeshRenderer>().enabled = false;
-        GameObject.Find("Cat").GetComponentInChildren<MeshRenderer>().enabled = false;
-        GameObject.Find("Dog").GetComponentInChildren<MeshRenderer>().enabled = false;
-        GameObject.Find("Elephant").GetComponentInChildren<MeshRenderer>().enabled = false;
-        GameObject.Find("Fire").GetComponentInChildren<MeshRenderer>().enabled = false;
+        apple.GetComponentInChildren<MeshRenderer>().enabled = false;
+        baseball.GetComponentInChildren<MeshRenderer>().enabled = false;
+        cat.GetComponentInChildren<MeshRenderer>().enabled = false;
+        dog.GetComponentInChildren<MeshRenderer>().enabled = false;
+        elephant.GetComponentInChildren<MeshRenderer>().enabled = false;
+        fire.GetComponentInChildren<MeshRenderer>().enabled = false;
 
         audio_apple = GameObject.Find("audio_apple").GetComponent<AudioSource>();
         audio_baseball = GameObject.Find("audio_baseball").GetComponent<AudioSource>();
@@ -41,21 +48,21 @@ public class CardSelector : GazeInput
     }
 
     private void hideAllCards() {
-        GameObject.Find("Apple").transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
-        GameObject.Find("Baseball").transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
-        GameObject.Find("Cat").transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
-        GameObject.Find("Dog").transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
-        GameObject.Find("Elephant").transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
-        GameObject.Find("Fire").transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
-        GameObject.Find("Apple").transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
-        GameObject.Find("Baseball").transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
-        GameObject.Find("Cat").transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
-        GameObject.Find("Dog").transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
-        GameObject.Find("Elephant").transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
-        GameObject.Find("Fire").transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
-        GameObject.Find("Back").GetComponent<MeshRenderer>().enabled = false;
-        GameObject.Find("Back").transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
-        GameObject.Find("Tap instruction").GetComponent<MeshRenderer>().enabled = false;
+        apple.transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
+        baseball.transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
+        cat.transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
+        dog.transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
+        elephant.transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
+        fire.transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
+        apple.transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
+        baseball.transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
+        cat.transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
+        dog.transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
+        elephant.transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
+        fire.transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
+        // GameObject.Find("Back").GetComponent<MeshRenderer>().enabled = false;
+        // GameObject.Find("Back").transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
+        // GameObject.Find("Tap instruction").GetComponent<MeshRenderer>().enabled = false;
     }
     private async void ShootBall(TappedEventArgs obj)
     {
@@ -71,8 +78,8 @@ public class CardSelector : GazeInput
             {
                 audio_apple.Play();
                 hideAllCards();
-                GameObject.Find("Apple").GetComponentInChildren<MeshRenderer>().enabled = true;
-                await Task.Delay(1000);
+                apple.GetComponentInChildren<MeshRenderer>().enabled = true;
+                await Task.Delay(700);
                 DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 0;
@@ -82,8 +89,8 @@ public class CardSelector : GazeInput
             {
                 audio_baseball.Play();
                 hideAllCards();
-                GameObject.Find("Baseball").GetComponentInChildren<MeshRenderer>().enabled = true;
-                await Task.Delay(1000);
+                baseball.GetComponentInChildren<MeshRenderer>().enabled = true;
+                await Task.Delay(700);
                 DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 1;
@@ -93,8 +100,8 @@ public class CardSelector : GazeInput
             {
                 audio_cat.Play();
                 hideAllCards();
-                GameObject.Find("Cat").GetComponentInChildren<MeshRenderer>().enabled = true;
-                await Task.Delay(1000);
+                cat.GetComponentInChildren<MeshRenderer>().enabled = true;
+                await Task.Delay(700);
                 DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 2;
@@ -104,8 +111,8 @@ public class CardSelector : GazeInput
             {
                 audio_dog.Play();
                 hideAllCards();
-                GameObject.Find("Dog").GetComponentInChildren<MeshRenderer>().enabled = true;
-                await Task.Delay(1000);
+                dog.GetComponentInChildren<MeshRenderer>().enabled = true;
+                await Task.Delay(700);
                 DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 3;
@@ -115,8 +122,8 @@ public class CardSelector : GazeInput
             {
                 audio_elephant.Play();
                 hideAllCards();
-                GameObject.Find("Elephant").GetComponentInChildren<MeshRenderer>().enabled = true;
-                await Task.Delay(1000);
+                elephant.GetComponentInChildren<MeshRenderer>().enabled = true;
+                await Task.Delay(700);
                 DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 4;
@@ -126,8 +133,8 @@ public class CardSelector : GazeInput
             {
                 audio_fire.Play();
                 hideAllCards();
-                GameObject.Find("Fire").GetComponentInChildren<MeshRenderer>().enabled = true;
-                await Task.Delay(1000);
+                fire.GetComponentInChildren<MeshRenderer>().enabled = true;
+                await Task.Delay(700);
                 DestroyCursor(0);
                 SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 5;
@@ -154,7 +161,7 @@ public class CardSelector : GazeInput
             // GameLearnController.curr_vocab_idx = 0;
             audio_fire.Play();
             hideAllCards();
-            GameObject.Find("Fire").GetComponentInChildren<MeshRenderer>().enabled = true;
+            fire.GetComponentInChildren<MeshRenderer>().enabled = true;
         }
         if (Input.GetKeyDown("r")) // DEBUGGING ONLY
         {

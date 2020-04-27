@@ -22,10 +22,18 @@ public class GameLearnController : MonoBehaviour {
     float[] objects_scale = new float[] {
         0.1f,
         0.008f,
-        0.035f,
         0.03f,
-        0.048f,
-        1.0f 
+        0.027f,
+        0.045f,
+        0.9f 
+    };
+    Vector3[] objects_pos = new Vector3[] {
+        new Vector3(-1.3f, -2.1f, -1f),
+        new Vector3(-1.3f, -2.1f, -1f),
+        new Vector3(-1.6f, -1.5f, -1f),
+        new Vector3(-1.5f, -1.7f, -1f),
+        new Vector3(-1.3f, -1.9f, -1f),
+        new Vector3(-1.4f, -1.9f, -1f)
     };
     public bool[] object_unlocked = new bool[] {false, false, false, false, false, false};
     public static GameLearnController Instance;
@@ -60,7 +68,11 @@ public class GameLearnController : MonoBehaviour {
             LoadAll();
         }
         GameObject currentObject = GameObject.FindGameObjectWithTag("actualObject");
-        currentObject.transform.Rotate(0, 50 * Time.deltaTime, 0);
+        if (animations_list[curr_vocab_idx] == "Elephant") { 
+            GameObject.Find("default").transform.Rotate(0, 50 * Time.deltaTime, 0);
+        } else {
+            currentObject.transform.Rotate(0, 50 * Time.deltaTime, 0);
+        }
     }
 
     // ===============================================================
@@ -106,7 +118,7 @@ public class GameLearnController : MonoBehaviour {
             Destroy(old_obj);
         }
         GameObject newObject = Instantiate(Resources.Load(animations_list[curr_vocab_idx])) as GameObject;
-        newObject.transform.position = new Vector3(-1.5f, -1.7f, -1f);
+        newObject.transform.position = objects_pos[curr_vocab_idx];
         float scale = objects_scale[curr_vocab_idx];
         newObject.transform.localScale = new Vector3(scale, scale, scale);
         newObject.name = animations_list[curr_vocab_idx];
