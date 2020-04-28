@@ -172,8 +172,8 @@ public class CardSelector : GazeInput
             // cat.GetComponentInChildren<MeshRenderer>().enabled = true;
             // dog.GetComponentInChildren<MeshRenderer>().enabled = true;
             // elephant.GetComponentInChildren<MeshRenderer>().enabled = true;
-            fire.GetComponentInChildren<MeshRenderer>().enabled = true;
-            GameLearnController.curr_vocab_idx = 5;
+            elephant.GetComponentInChildren<MeshRenderer>().enabled = true;
+            GameLearnController.curr_vocab_idx = 4;
             SceneManager.LoadSceneAsync("GameLearn");
         }
         if (Input.GetKeyDown("r")) // DEBUGGING ONLY

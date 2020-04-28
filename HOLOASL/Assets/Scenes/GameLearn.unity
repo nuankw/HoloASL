@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -464,7 +464,6 @@ MonoBehaviour:
   unlock_num_text_obj: {fileID: 166597958}
   curr_label_obj: {fileID: 1932426536}
   curr_animator_obj: {fileID: 200501064}
-  object_unlocked: 000000000000
 --- !u!114 &200501063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -833,9 +832,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 875943889}
-  m_Text: '0.50 x
-
-'
+  m_Text: "0.5x \u21BB\n"
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -1182,9 +1179,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1428620593}
-  m_Text: '1.00x
-
-'
+  m_Text: "1x \u21BB\n"
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1

@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1416767104162702}
+  m_RootGameObject: {fileID: 1751497344962950}
   m_IsPrefabParent: 1
---- !u!1 &1166597117947132
+--- !u!1 &1007453285401332
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4481291908557524}
-  - component: {fileID: 33693028344603184}
-  - component: {fileID: 23425464588353510}
+  - component: {fileID: 4211830084614190}
+  - component: {fileID: 33515641327049134}
+  - component: {fileID: 23095382401523216}
   m_Layer: 0
   m_Name: default
   m_TagString: Untagged
@@ -28,54 +28,54 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1416767104162702
+--- !u!1 &1751497344962950
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4710563707921840}
+  - component: {fileID: 4306890985416242}
   m_Layer: 0
-  m_Name: Elephant
+  m_Name: Elephant_old
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4481291908557524
+--- !u!4 &4211830084614190
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1166597117947132}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 1007453285401332}
+  m_LocalRotation: {x: 0, y: 0.9659258, z: 0, w: 0.2588191}
+  m_LocalPosition: {x: -10.2, y: 42.2, z: 6.7}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
-  m_Father: {fileID: 4710563707921840}
+  m_Father: {fileID: 4306890985416242}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4710563707921840
+  m_LocalEulerAnglesHint: {x: 0, y: 150, z: 0}
+--- !u!4 &4306890985416242
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1416767104162702}
-  m_LocalRotation: {x: 0, y: 0.9396927, z: -0, w: -0.3420201}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_GameObject: {fileID: 1751497344962950}
+  m_LocalRotation: {x: 0, y: -0.17364825, z: 0, w: 0.9848078}
+  m_LocalPosition: {x: -3.4717424, y: -1.0505705, z: -5.9154243}
+  m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_Children:
-  - {fileID: 4481291908557524}
+  - {fileID: 4211830084614190}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 220, z: 0}
---- !u!23 &23425464588353510
+  m_LocalEulerAnglesHint: {x: 0, y: -20, z: 0}
+--- !u!23 &23095382401523216
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1166597117947132}
+  m_GameObject: {fileID: 1007453285401332}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -84,9 +84,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: dd2dba448d6b57e4fadaa4ee84ce6cd1, type: 3}
-  - {fileID: 2100002, guid: dd2dba448d6b57e4fadaa4ee84ce6cd1, type: 3}
-  - {fileID: 2100004, guid: dd2dba448d6b57e4fadaa4ee84ce6cd1, type: 3}
+  - {fileID: 2100000, guid: b404bae4cb110b84b9d112d8b61d6905, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,10 +104,10 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33693028344603184
+--- !u!33 &33515641327049134
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1166597117947132}
-  m_Mesh: {fileID: 4300000, guid: dd2dba448d6b57e4fadaa4ee84ce6cd1, type: 3}
+  m_GameObject: {fileID: 1007453285401332}
+  m_Mesh: {fileID: 4300000, guid: b404bae4cb110b84b9d112d8b61d6905, type: 3}

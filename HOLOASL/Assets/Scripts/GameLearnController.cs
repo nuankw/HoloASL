@@ -25,15 +25,15 @@ public class GameLearnController : MonoBehaviour {
         0.008f,
         0.03f,
         0.027f,
-        0.045f,
-        0.9f 
+        0.3f,
+        0.7f 
     };
     Vector3[] objects_pos = new Vector3[] {
         new Vector3(-1.3f, -2.1f, -1f),
         new Vector3(-1.3f, -2.1f, -1f),
         new Vector3(-1.6f, -1.5f, -1f),
         new Vector3(-1.5f, -1.7f, -1f),
-        new Vector3(-1.3f, -1.9f, -1f),
+        new Vector3(-1.7f, -1.8f, -1f),
         new Vector3(-1.4f, -1.9f, -1f)
     };
     public static bool[] object_unlocked = new bool[] {false, false, false, false, false, false};
@@ -78,11 +78,11 @@ public class GameLearnController : MonoBehaviour {
             Unlock_Current_Vocab();
         }
         GameObject currentObject = GameObject.FindGameObjectWithTag("actualObject");
-        if (animations_list[curr_vocab_idx] == "Elephant") { 
-            GameObject.Find("default").transform.Rotate(0, 50 * Time.deltaTime, 0);
-        } else {
-            currentObject.transform.Rotate(0, 50 * Time.deltaTime, 0);
-        }
+        // if (animations_list[curr_vocab_idx] == "Elephant") { 
+        //    GameObject.Find("default").transform.Rotate(0, 50 * Time.deltaTime, 0);
+        // } else {
+        currentObject.transform.Rotate(0, 50 * Time.deltaTime, 0);
+        // }
     }
 
     // ===============================================================
