@@ -3,6 +3,9 @@ using UnityEngine.XR.WSA.Input;
 using UnityEngine.SceneManagement;
 using System.Threading.Tasks;
 
+/*  
+    Future: object as class & put objets into iteratable data structures
+*/
 public class CardSelector : GazeInput
 {
 
@@ -11,6 +14,8 @@ public class CardSelector : GazeInput
     private int number_unlocked;
     private AudioSource audio_apple, audio_baseball, audio_cat, audio_dog, audio_elephant, audio_fire;
     private GameObject apple, baseball, cat, dog, elephant, fire;
+    private bool[] unlocked;
+
     // Use this for initialization
     internal override void Start()
     {
@@ -24,13 +29,16 @@ public class CardSelector : GazeInput
         recognizer.Tapped += ShootBall;
         
         recognizer.StartCapturingGestures();
-        
+
         apple = GameObject.Find("Apple");
         baseball = GameObject.Find("Baseball");
         cat = GameObject.Find("Cat");
         dog = GameObject.Find("Dog");
         elephant = GameObject.Find("Elephant");
         fire = GameObject.Find("Fire");
+
+        unlocked = GameLearnController.object_unlocked;
+        updateTextColor();
 
         apple.GetComponentInChildren<MeshRenderer>().enabled = false;
         baseball.GetComponentInChildren<MeshRenderer>().enabled = false;
@@ -48,21 +56,29 @@ public class CardSelector : GazeInput
         audio_fire = GameObject.Find("audio_fire").GetComponent<AudioSource>();
     }
 
+    private void updateTextColor() {
+        apple.transform.Find("text").GetComponent<TextMesh>().color = unlocked[0] ? new Color(230f / 255f, 230f / 255f, 230f / 255f) : new Color(150f / 255f, 150f / 255f, 150f / 255f);
+        baseball.transform.Find("text").GetComponent<TextMesh>().color = unlocked[1] ? new Color(230f / 255f, 230f / 255f, 230f / 255f) : new Color(150f / 255f, 150f / 255f, 150f / 255f);
+        cat.transform.Find("text").GetComponent<TextMesh>().color = unlocked[2] ? new Color(230f / 255f, 230f / 255f, 230f / 255f) : new Color(150f / 255f, 150f / 255f, 150f / 255f);
+        dog.transform.Find("text").GetComponent<TextMesh>().color = unlocked[3] ? new Color(230f / 255f, 230f / 255f, 230f / 255f) : new Color(150f / 255f, 150f / 255f, 150f / 255f);
+        elephant.transform.Find("text").GetComponent<TextMesh>().color = unlocked[4] ? new Color(230f / 255f, 230f / 255f, 230f / 255f) : new Color(150f / 255f, 150f / 255f, 150f / 255f);
+        fire.transform.Find("text").GetComponent<TextMesh>().color = unlocked[5] ? new Color(230f / 255f, 230f / 255f, 230f / 255f) : new Color(150f / 255f, 150f / 255f, 150f / 255f);
+    }
     private void hideAllCards() {
-        apple.transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
-        baseball.transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
-        cat.transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
-        dog.transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
-        elephant.transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
-        fire.transform.FindChild("whiteboard").GetComponent<MeshRenderer>().enabled = false;
-        apple.transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
-        baseball.transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
-        cat.transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
-        dog.transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
-        elephant.transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
-        fire.transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
+        apple.transform.Find("whiteboard").GetComponent<MeshRenderer>().enabled = false;
+        baseball.transform.Find("whiteboard").GetComponent<MeshRenderer>().enabled = false;
+        cat.transform.Find("whiteboard").GetComponent<MeshRenderer>().enabled = false;
+        dog.transform.Find("whiteboard").GetComponent<MeshRenderer>().enabled = false;
+        elephant.transform.Find("whiteboard").GetComponent<MeshRenderer>().enabled = false;
+        fire.transform.Find("whiteboard").GetComponent<MeshRenderer>().enabled = false;
+        apple.transform.Find("text").GetComponent<MeshRenderer>().enabled = false;
+        baseball.transform.Find("text").GetComponent<MeshRenderer>().enabled = false;
+        cat.transform.Find("text").GetComponent<MeshRenderer>().enabled = false;
+        dog.transform.Find("text").GetComponent<MeshRenderer>().enabled = false;
+        elephant.transform.Find("text").GetComponent<MeshRenderer>().enabled = false;
+        fire.transform.Find("text").GetComponent<MeshRenderer>().enabled = false;
         GameObject.Find("Back").GetComponent<MeshRenderer>().enabled = false;
-        GameObject.Find("Back").transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
+        GameObject.Find("Back").transform.Find("text").GetComponent<MeshRenderer>().enabled = false;
         GameObject.Find("Tap instruction").GetComponent<MeshRenderer>().enabled = false;
         
         GameObject.Find("LoadingText").GetComponent<MeshRenderer>().enabled = true;

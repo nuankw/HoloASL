@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using System;
 using System.Threading.Tasks;
 
@@ -35,7 +36,7 @@ public class GameLearnController : MonoBehaviour {
         new Vector3(-1.3f, -1.9f, -1f),
         new Vector3(-1.4f, -1.9f, -1f)
     };
-    public bool[] object_unlocked = new bool[] {false, false, false, false, false, false};
+    public static bool[] object_unlocked = new bool[] {false, false, false, false, false, false};
     public static GameLearnController Instance;
 
     private void Awake() {
@@ -67,6 +68,14 @@ public class GameLearnController : MonoBehaviour {
             Unlock_Current_Vocab();
             curr_vocab_idx += 1;
             LoadAll();
+        }
+        if (Input.GetKeyDown("r")) // DEBUGGING ONLY
+        {
+            SceneManager.LoadSceneAsync("Cards");
+        }
+        if (Input.GetKeyDown("u")) // DEBUGGING ONLY
+        {
+            Unlock_Current_Vocab();
         }
         GameObject currentObject = GameObject.FindGameObjectWithTag("actualObject");
         if (animations_list[curr_vocab_idx] == "Elephant") { 
@@ -133,7 +142,7 @@ public class GameLearnController : MonoBehaviour {
         newObject.tag = "actualObject";
     }
 
-    public int Unlock_Current_Vocab() {
+    public bool[] Unlock_Current_Vocab() {
         Debug.Log(curr_vocab_idx);
         Debug.Log(object_unlocked[curr_vocab_idx]);
 
@@ -145,7 +154,7 @@ public class GameLearnController : MonoBehaviour {
             Update_Score_UI();
         }
         
-        return n_unlocked;
+        return object_unlocked;
     }
 
     public void Play_at_Full_Speed() {

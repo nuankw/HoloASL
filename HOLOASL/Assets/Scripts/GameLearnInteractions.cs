@@ -7,7 +7,6 @@ public class GameLearnInteractions : GazeInput
 {
     private GestureRecognizer _gestureRecognizer;
     private AudioSource audio_ding;
-
     internal override void Start()
     {
         base.Start();
