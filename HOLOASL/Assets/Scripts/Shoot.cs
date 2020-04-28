@@ -50,7 +50,6 @@ public class Shoot : GazeInput
 
             else if (FocusedObject.tag == "GameLearn")
             {
-                base.DestroyCursor(0);
                 SceneManager.LoadScene("Cards");
             }
         }

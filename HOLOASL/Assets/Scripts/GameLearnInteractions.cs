@@ -28,7 +28,6 @@ public class GameLearnInteractions : GazeInput
         Debug.Log(FocusedObject.tag);
         if (FocusedObject.tag == "Back") {
             audio_ding.Play();
-            DestroyCursor(0);
             SceneManager.LoadScene("Cards");
         }
         else if (FocusedObject.tag == "Pass") {

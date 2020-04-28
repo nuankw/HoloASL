@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 public class GameLearnController : MonoBehaviour {
     public TextMesh unlock_num_text_obj;
     public TextMesh curr_label_obj;
-    internal Animator curr_animator_obj;
+    public Animator curr_animator_obj;
     public static int curr_vocab_idx;
     public static int n_unlocked; // number of unlocked objects
     private float animator_speed = 1.0f;// Future: can change all following Array to ArrayList for easier future dynamic addition (back-end ish)
@@ -53,9 +53,6 @@ public class GameLearnController : MonoBehaviour {
         // Add the Animator object to this object
         curr_animator_obj = GetComponent<Animator>();
 
-        // remove cursor duplicates
-
-
         // load objects
         LoadAll();
     }
@@ -80,10 +77,17 @@ public class GameLearnController : MonoBehaviour {
     }
 
     // ===============================================================
-    public void LoadAll() {
+    public async void LoadAll() {
         curr_vocab_idx = Math.Abs(curr_vocab_idx % animations_list.Length); // just to play safe
         Load_Object();
-        Play_Animation(800);
+        // MissingReferenceException: The object of type 'Animator' has been destroyed but you are still trying to access it.
+        // Your script should either check if it is null or you should not destroy the object.
+        // but the following still won't work..
+        // no auto play
+        // if (GameObject.Find("Alphabet_animation").GetComponent<Animator>().GetType() == typeof(Animator)) { // handle async scene loading
+        //     Debug.Log("found");
+        //     Play_Animation(800);
+        // }
     }
 
     public void Load_Object() {
@@ -110,7 +114,7 @@ public class GameLearnController : MonoBehaviour {
     }
 
     private void Update_Score_UI() {
-        unlock_num_text_obj.text = "U n l o c k e d: " + n_unlocked + " / " + animations_list.Length;
+        unlock_num_text_obj.text = "L e a r n e d: " + n_unlocked + " / " + animations_list.Length;
         unlock_num_text_obj.color = new Color(230f / 255f, 230f / 255f, 230f / 255f);
         unlock_num_text_obj.transform.position = new Vector3(-2.0f, 0.5f, -0.5f);
         unlock_num_text_obj.transform.eulerAngles = new Vector3(0, 0, 0);

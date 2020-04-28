@@ -38,6 +38,7 @@ public class CardSelector : GazeInput
         dog.GetComponentInChildren<MeshRenderer>().enabled = false;
         elephant.GetComponentInChildren<MeshRenderer>().enabled = false;
         fire.GetComponentInChildren<MeshRenderer>().enabled = false;
+        GameObject.Find("LoadingText").GetComponent<MeshRenderer>().enabled = false;
 
         audio_apple = GameObject.Find("audio_apple").GetComponent<AudioSource>();
         audio_baseball = GameObject.Find("audio_baseball").GetComponent<AudioSource>();
@@ -60,11 +61,14 @@ public class CardSelector : GazeInput
         dog.transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
         elephant.transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
         fire.transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
-        // GameObject.Find("Back").GetComponent<MeshRenderer>().enabled = false;
-        // GameObject.Find("Back").transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
-        // GameObject.Find("Tap instruction").GetComponent<MeshRenderer>().enabled = false;
+        GameObject.Find("Back").GetComponent<MeshRenderer>().enabled = false;
+        GameObject.Find("Back").transform.FindChild("text").GetComponent<MeshRenderer>().enabled = false;
+        GameObject.Find("Tap instruction").GetComponent<MeshRenderer>().enabled = false;
+        
+        GameObject.Find("LoadingText").GetComponent<MeshRenderer>().enabled = true;
+    
     }
-    private async void ShootBall(TappedEventArgs obj)
+    private void ShootBall(TappedEventArgs obj)
     {
 
         Debug.Log("Focussed object is:" + FocusedObject.tag);
@@ -72,15 +76,14 @@ public class CardSelector : GazeInput
         if (FocusedObject != null)
         {
 
+            // apologize for the ugliness
             if (FocusedObject.tag == "sel_apple")
             {
                 audio_apple.Play();
                 hideAllCards();
                 apple.GetComponentInChildren<MeshRenderer>().enabled = true;
-                await Task.Delay(700);
-                DestroyCursor(0);
-                SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 0;
+                SceneManager.LoadSceneAsync("GameLearn");
             }
 
             else if (FocusedObject.tag == "sel_baseball")
@@ -88,10 +91,8 @@ public class CardSelector : GazeInput
                 audio_baseball.Play();
                 hideAllCards();
                 baseball.GetComponentInChildren<MeshRenderer>().enabled = true;
-                await Task.Delay(700);
-                DestroyCursor(0);
-                SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 1;
+                SceneManager.LoadSceneAsync("GameLearn");
             }
 
             else if (FocusedObject.tag == "sel_cat")
@@ -99,10 +100,8 @@ public class CardSelector : GazeInput
                 audio_cat.Play();
                 hideAllCards();
                 cat.GetComponentInChildren<MeshRenderer>().enabled = true;
-                await Task.Delay(700);
-                DestroyCursor(0);
-                SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 2;
+                SceneManager.LoadSceneAsync("GameLearn");
             }
 
             else if (FocusedObject.tag == "sel_dog")
@@ -110,10 +109,8 @@ public class CardSelector : GazeInput
                 audio_dog.Play();
                 hideAllCards();
                 dog.GetComponentInChildren<MeshRenderer>().enabled = true;
-                await Task.Delay(700);
-                DestroyCursor(0);
-                SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 3;
+                SceneManager.LoadSceneAsync("GameLearn");
             }
 
             else if (FocusedObject.tag == "sel_elephant")
@@ -121,10 +118,8 @@ public class CardSelector : GazeInput
                 audio_elephant.Play();
                 hideAllCards();
                 elephant.GetComponentInChildren<MeshRenderer>().enabled = true;
-                await Task.Delay(700);
-                DestroyCursor(0);
-                SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 4;
+                SceneManager.LoadSceneAsync("GameLearn");
             }
 
             else if (FocusedObject.tag == "sel_fire")
@@ -132,16 +127,13 @@ public class CardSelector : GazeInput
                 audio_fire.Play();
                 hideAllCards();
                 fire.GetComponentInChildren<MeshRenderer>().enabled = true;
-                await Task.Delay(700);
-                DestroyCursor(0);
-                SceneManager.LoadScene("GameLearn");
                 GameLearnController.curr_vocab_idx = 5;
+                SceneManager.LoadSceneAsync("GameLearn");
             }
 
             else if (FocusedObject.tag == "Back")
             {
-                DestroyCursor(0);
-                SceneManager.LoadScene("MainScene");
+                SceneManager.LoadSceneAsync("MainScene");
             }
         }
     }
@@ -155,15 +147,22 @@ public class CardSelector : GazeInput
         {
             // audio_apple.Play();
             // DestroyCursor(0);
-            // SceneManager.LoadScene("GameLearn");
+            // SceneManager.LoadSceneAsync("GameLearn");
             // GameLearnController.curr_vocab_idx = 0;
             audio_fire.Play();
             hideAllCards();
+            // apple.GetComponentInChildren<MeshRenderer>().enabled = true;
+            // baseball.GetComponentInChildren<MeshRenderer>().enabled = true;
+            // cat.GetComponentInChildren<MeshRenderer>().enabled = true;
+            // dog.GetComponentInChildren<MeshRenderer>().enabled = true;
+            // elephant.GetComponentInChildren<MeshRenderer>().enabled = true;
             fire.GetComponentInChildren<MeshRenderer>().enabled = true;
+            GameLearnController.curr_vocab_idx = 5;
+            SceneManager.LoadSceneAsync("GameLearn");
         }
         if (Input.GetKeyDown("r")) // DEBUGGING ONLY
         {
-            SceneManager.LoadScene("Cards");
+            SceneManager.LoadSceneAsync("Cards");
         }
     }
     
