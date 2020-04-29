@@ -57,12 +57,12 @@ public class CardSelector : GazeInput
     }
 
     private void updateTextColor() {
-        apple.transform.Find("text").GetComponent<TextMesh>().color = unlocked[0] ? new Color(230f / 255f, 230f / 255f, 230f / 255f) : new Color(150f / 255f, 150f / 255f, 150f / 255f);
-        baseball.transform.Find("text").GetComponent<TextMesh>().color = unlocked[1] ? new Color(230f / 255f, 230f / 255f, 230f / 255f) : new Color(150f / 255f, 150f / 255f, 150f / 255f);
-        cat.transform.Find("text").GetComponent<TextMesh>().color = unlocked[2] ? new Color(230f / 255f, 230f / 255f, 230f / 255f) : new Color(150f / 255f, 150f / 255f, 150f / 255f);
-        dog.transform.Find("text").GetComponent<TextMesh>().color = unlocked[3] ? new Color(230f / 255f, 230f / 255f, 230f / 255f) : new Color(150f / 255f, 150f / 255f, 150f / 255f);
-        elephant.transform.Find("text").GetComponent<TextMesh>().color = unlocked[4] ? new Color(230f / 255f, 230f / 255f, 230f / 255f) : new Color(150f / 255f, 150f / 255f, 150f / 255f);
-        fire.transform.Find("text").GetComponent<TextMesh>().color = unlocked[5] ? new Color(230f / 255f, 230f / 255f, 230f / 255f) : new Color(150f / 255f, 150f / 255f, 150f / 255f);
+        apple.transform.Find("text").GetComponent<TextMesh>().color = unlocked[0] ? new Color(230f / 255f, 230f / 255f, 230f / 255f) : new Color(100f / 255f, 100f / 255f, 100f / 255f);
+        baseball.transform.Find("text").GetComponent<TextMesh>().color = unlocked[1] ? new Color(230f / 255f, 230f / 255f, 230f / 255f) : new Color(100f / 255f, 100f / 255f, 100f / 255f);
+        cat.transform.Find("text").GetComponent<TextMesh>().color = unlocked[2] ? new Color(230f / 255f, 230f / 255f, 230f / 255f) : new Color(100f / 255f, 100f / 255f, 100f / 255f);
+        dog.transform.Find("text").GetComponent<TextMesh>().color = unlocked[3] ? new Color(230f / 255f, 230f / 255f, 230f / 255f) : new Color(100f / 255f, 100f / 255f, 100f / 255f);
+        elephant.transform.Find("text").GetComponent<TextMesh>().color = unlocked[4] ? new Color(230f / 255f, 230f / 255f, 230f / 255f) : new Color(100f / 255f, 100f / 255f, 100f / 255f);
+        fire.transform.Find("text").GetComponent<TextMesh>().color = unlocked[5] ? new Color(230f / 255f, 230f / 255f, 230f / 255f) : new Color(100f / 255f, 100f / 255f, 100f / 255f);
     }
     private void hideAllCards() {
         apple.transform.Find("whiteboard").GetComponent<MeshRenderer>().enabled = false;

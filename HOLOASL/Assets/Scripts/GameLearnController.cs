@@ -69,14 +69,9 @@ public class GameLearnController : MonoBehaviour {
             curr_vocab_idx += 1;
             LoadAll();
         }
-        if (Input.GetKeyDown("r")) // DEBUGGING ONLY
-        {
-            SceneManager.LoadSceneAsync("Cards");
-        }
-        if (Input.GetKeyDown("u")) // DEBUGGING ONLY
-        {
-            Unlock_Current_Vocab();
-        }
+        if (Input.GetKeyDown("r")) { SceneManager.LoadSceneAsync("Cards"); }
+        if (Input.GetKeyDown("u")) { Unlock_Current_Vocab(); }
+        
         GameObject currentObject = GameObject.FindGameObjectWithTag("actualObject");
         // if (animations_list[curr_vocab_idx] == "Elephant") { 
         //    GameObject.Find("default").transform.Rotate(0, 50 * Time.deltaTime, 0);
@@ -164,7 +159,7 @@ public class GameLearnController : MonoBehaviour {
 
     public void Play_at_Half_Speed() {
         animator_speed = 0.5f;
-        Play_Animation(800);
+        Play_Animation(600);
     }
 
     public void Play_at_Quarter_Speed() {
