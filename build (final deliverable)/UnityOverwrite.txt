@@ -8,7 +8,7 @@
 Hololens Bot.sln: 51E924D6B189B32D0837A2C592A7E770
 Hololens Bot\App.cs: 9D3C6DF608B6A0DD9E1E8D1D50BCC2D2
 Hololens Bot\Hololens Bot.csproj: 6969BA93620D4F9A560B8592255BB142
-Hololens Bot\Hololens Bot.csproj.user: BEFB8AC4886C4CFDD3C68445D6F19B04
+Hololens Bot\Hololens Bot.csproj.user: modified
 Hololens Bot\Package.appxmanifest: 30E230A3A526D4578E3B542F6F43CF36
 Hololens Bot\project.json: 1D02BC64BAC0D041019673A1C4C51737
 Hololens Bot\Assets\SplashScreen.scale-200.png: A85C1D7624B6902CF8CEBD6F0200A826
@@ -17,4 +17,5 @@ Hololens Bot\Assets\Square44x44Logo.scale-200.png: 6C6EF27184ABE9D870A9D56495377
 Hololens Bot\Assets\Square44x44Logo.targetsize-24_altform-unplated.png: 156637F7B5363E983E7A46D8E533A23D
 Hololens Bot\Assets\StoreLogo.png: 90BD194CA4A7CFFF3E8B8222229857FB
 Hololens Bot\Assets\Wide310x150Logo.scale-200.png: C96846A80DF667F87355569CD816192D
+Hololens Bot\obj\x86\Debug\Hololens Bot.csproj.CopyComplete: D41D8CD98F00B204E9800998ECF8427E
 Hololens Bot\Properties\Default.rd.xml: 72EB282657164E79A1C42F6240984826
